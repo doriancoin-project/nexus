@@ -1,0 +1,28 @@
+diff --git a/node_modules/@flexa/flexa-react-native/package.json b/node_modules/@flexa/flexa-react-native/package.json
+index 1234567..abcdefg 100644
+--- a/node_modules/@flexa/flexa-react-native/package.json
++++ b/node_modules/@flexa/flexa-react-native/package.json
+@@ -51,12 +51,7 @@
+   "publishConfig": {
+     "registry": "https://registry.npmjs.org/"
+   },
+-  "dependencies": {
+-    "@react-native/new-app-screen": "0.81.1",
+-    "react": "19.1.0",
+-    "react-native": "0.81.1",
+-    "react-native-safe-area-context": "^5.5.2"
+-  },
++  "dependencies": {},
+   "devDependencies": {
+     "@babel/core": "^7.25.2",
+     "@babel/preset-env": "^7.25.3",
+@@ -81,7 +76,8 @@
+   },
+   "peerDependencies": {
+     "react": "*",
+-    "react-native": "*"
++    "react-native": "*",
++    "react-native-safe-area-context": "*"
+   },
+   "engines": {
+     "node": ">=20"
