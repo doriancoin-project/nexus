@@ -14,7 +14,7 @@ import {checkBIP39Word, getBIP39Index} from './bip39';
 import lpad from './lpad';
 import crc32c from './crc32c';
 import {hexStringToHexArray} from './hexStringToHexArray';
-import {LITECOIN, LITECOIN_WITH_ZPRV} from './litecoin';
+import {DORIANCOIN, DORIANCOIN_WITH_ZPRV} from './doriancoin';
 
 const bip32 = BIP32Factory(ecc);
 
@@ -245,11 +245,11 @@ export const decodeSeed = async (mnemonic, passphrase = 'aezeed') => {
 
       const entropyBuffer = Buffer.from(entropy, 'hex');
 
-      const bip32RootKey = bip32.fromSeed(entropyBuffer, LITECOIN);
+      const bip32RootKey = bip32.fromSeed(entropyBuffer, DORIANCOIN);
 
       const bip32RootKeyXprv = bip32.fromSeed(
         entropyBuffer,
-        LITECOIN_WITH_ZPRV,
+        DORIANCOIN_WITH_ZPRV,
       );
 
       resolve({

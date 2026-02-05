@@ -1,5 +1,5 @@
-const MOONPAY_PUBLIC_KEY = 'pk_live_wnYzNcex8iKfXSUVwn4FoHDiJlX312';
-// const ONRAMPER_PUBLIC_KEY = 'pk_prod_01JHSS4GEJSTQD0Z56P5BDJSC6';
+const MOONPAY_PUBLIC_KEY = '';
+// const ONRAMPER_PUBLIC_KEY = '';
 
 export const emptyBuyQuoteAndLimits: IBuyQuoteAndLimits = {
   ltcAmount: 0,
@@ -77,29 +77,16 @@ export type ISellQuoteAndLimits = {
 export const getMoonpaySellQuoteDataUrl = (
   cryptoAmount: number,
   currencyCode: string,
-): string => {
-  const url =
-    'https://api.moonpay.com/v3/currencies/ltc/sell_quote/' +
-    `?apiKey=${MOONPAY_PUBLIC_KEY}` +
-    `&baseCurrencyAmount=${cryptoAmount}` +
-    `&quoteCurrencyCode=${String(currencyCode).toLowerCase()}` +
-    '&paymentMethod=credit_debit_card';
-  return url;
+): string | null => {
+  // MoonPay sell quotes disabled
+  return null;
 };
 
 export const getMoonpayBuyQuoteDataUrl = (
   currencyCode: string,
   cryptoAmount?: number,
   fiatAmount?: number,
-): string => {
-  const currencyAmountURL = fiatAmount
-    ? `&baseCurrencyAmount=${fiatAmount}`
-    : `&quoteCurrencyAmount=${cryptoAmount}`;
-  const url =
-    'https://api.moonpay.io/v3/currencies/ltc/quote/' +
-    `?apiKey=${MOONPAY_PUBLIC_KEY}` +
-    currencyAmountURL +
-    `&baseCurrencyCode=${String(currencyCode).toLowerCase()}` +
-    '&paymentMethod=credit_debit_card';
-  return url;
+): string | null => {
+  // MoonPay buy quotes disabled
+  return null;
 };

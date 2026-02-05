@@ -9,7 +9,7 @@ import {
   walletKitListUnspent,
   walletKitFundPsbt,
   walletKitFinalizePsbt,
-} from 'react-native-turbo-lndltc';
+} from 'react-native-turbo-lnddsv';
 import {
   GetTransactionsRequestSchema,
   OutputScriptType,
@@ -17,8 +17,8 @@ import {
   OutPoint,
   AddressType,
   Utxo,
-} from 'react-native-turbo-lndltc/protos/lightning_pb';
-import {ChangeAddressType} from 'react-native-turbo-lndltc/protos/walletrpc/walletkit_pb';
+} from 'react-native-turbo-lnddsv/protos/lightning_pb';
+import {ChangeAddressType} from 'react-native-turbo-lnddsv/protos/walletrpc/walletkit_pb';
 import {create} from '@bufbuild/protobuf';
 
 import {AppThunk, AppThunkTxHashesWithExtraData} from './types';
@@ -127,33 +127,8 @@ const getPriceOnDate = (
   timestamp: number,
   torEnabled: boolean,
 ): Promise<number | null> => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const res = await fetchResolve(
-        'https://api.nexuswallet.com/api/prices/dateprice',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            timestamp,
-          }),
-        },
-        torEnabled,
-      );
-
-      if (res && res.hasOwnProperty('datePrice')) {
-        resolve(res.datePrice);
-      } else {
-        // NOTE: resolve null so this request won't break math for the TransactionList
-        resolve(null);
-      }
-    } catch (error) {
-      resolve(null);
-    }
-  });
+  // Price fetch disabled - no exchange listing for doriancoin
+  return Promise.resolve(null);
 };
 
 export const sendConvertWithPsbt =
@@ -936,7 +911,7 @@ const publishTransactionFallback1 = (
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetchResolve(
-        'https://litecoinspace.org/api/tx',
+        'https://blocks.doriancoin.com/api/tx',
         {
           method: 'POST',
           body: txHex,
@@ -948,46 +923,8 @@ const publishTransactionFallback1 = (
       if (typeof response === 'string' && response.length > 0) {
         resolve(response);
       } else {
-        console.error(`Failed to broadcast tx via Litecoin Space`);
-        console.info('Attempting to broadcast tx via Blockcypher!');
-
-        const fallbackResolve = await publishTransactionFallback2(
-          txHex,
-          torEnabled,
-        );
-        resolve(fallbackResolve);
-      }
-    } catch (error) {
-      reject(String(error));
-    }
-  });
-};
-
-const publishTransactionFallback2 = (
-  txHex: string,
-  torEnabled: boolean = false,
-): Promise<string> => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const response = await fetchResolve(
-        'https://api.blockcypher.com/v1/ltc/main/txs/push',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            tx: txHex,
-          }),
-        },
-        torEnabled,
-      );
-
-      // NOTE: works but hash is undefined
-      if (response && response.hash) {
-        resolve(response.hash);
-      } else {
-        reject(`Tx Broadcast 2nd failed: Invalid response`);
+        console.error(`Failed to broadcast tx via DSV Blocks`);
+        reject('Tx Broadcast failed: Invalid response');
       }
     } catch (error) {
       reject(String(error));

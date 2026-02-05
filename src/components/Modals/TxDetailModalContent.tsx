@@ -159,7 +159,7 @@ export default function TxDetailModalContent(props: Props) {
       const cached = dispatch(checkTxHashesWithExtraData(transaction.hash));
       if (!cached) {
         const data: any = await fetchResolve(
-          `https://litecoinspace.org/api/tx/${transaction.hash}`,
+          `https://blocks.doriancoin.com/api/tx/${transaction.hash}`,
           {
             signal: abortController.signal,
           },

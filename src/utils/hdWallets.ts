@@ -4,7 +4,7 @@ import {BIP32Factory, BIP32Interface} from 'bip32';
 import {ECPairFactory, ECPairInterface} from 'ecpair';
 import * as bip39 from 'bip39';
 
-import {LITECOIN} from './litecoin';
+import {DORIANCOIN} from './doriancoin';
 import {fetchResolve} from '../utils/tor';
 
 const bip32 = BIP32Factory(ecc);
@@ -52,7 +52,7 @@ export async function getDerivedKeyPairsWithBalance(
         // Convert privateKey Uint8Array to Buffer to avoid "Expected Buffer, got Uint8Array" error
         const privateKeyBuffer = Buffer.from(sweepableAddress.keyPair.privateKey!);
         const keyPair = ECPair.fromPrivateKey(privateKeyBuffer, {
-          network: LITECOIN,
+          network: DORIANCOIN,
           compressed: true,
         });
 
@@ -138,13 +138,13 @@ function calcBip32RootKeyFromSeedPhrase(seedPhrase: IMnemonic) {
   const mnemonicString = seedPhrase.join(' ');
 
   const seed = bip39.mnemonicToSeedSync(mnemonicString);
-  const bip32RootKey: BIP32Interface = bip32.fromSeed(seed, LITECOIN);
+  const bip32RootKey: BIP32Interface = bip32.fromSeed(seed, DORIANCOIN);
 
   return bip32RootKey;
 }
 
 function calcBip32RootKeyFromSeedBase58(seedBase58: string) {
-  const bip32RootKey: BIP32Interface = bip32.fromBase58(seedBase58, LITECOIN);
+  const bip32RootKey: BIP32Interface = bip32.fromBase58(seedBase58, DORIANCOIN);
 
   return bip32RootKey;
 }
@@ -166,7 +166,7 @@ function deriveChildExtendedKey(
 function getPubKeyFromExtendedKey(extendedKey: BIP32Interface) {
   const {address} = bitcoin.payments.p2pkh({
     pubkey: extendedKey.publicKey,
-    network: LITECOIN,
+    network: DORIANCOIN,
   });
 
   if (address === undefined) {
@@ -184,7 +184,7 @@ async function fetchAddressData(
   return new Promise(async (resolve, reject) => {
     try {
       const data = await fetchResolve(
-        `https://litecoinspace.org/api/address/${address}`,
+        `https://blocks.doriancoin.com/api/address/${address}`,
         {
           method: 'GET',
           headers: {

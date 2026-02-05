@@ -80,7 +80,7 @@ const ConfirmBuyOnramper: React.FC<Props> = props => {
           returnRoute: 'ConfirmBuyOnramper',
         });
       } else {
-        throw new Error('Failed to Buy Litecoin URL (Onramper)!');
+        throw new Error('Failed to Buy Doriancoin URL (Onramper)!');
       }
     } catch (error) {
       dispatch(showError(String(error)));
@@ -257,7 +257,7 @@ export const ConfirmBuyOnramperNavigationOptions = (
   return {
     headerTitle: () => (
       <TranslateText
-        textKey={'buy_litecoin'}
+        textKey={'buy_doriancoin'}
         domain={'buyTab'}
         numberOfLines={1}
         textStyle={styles.headerTitle}

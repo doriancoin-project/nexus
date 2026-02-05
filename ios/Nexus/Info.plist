@@ -26,10 +26,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>litecoin</string>
+			<string>doriancoin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>litecoin</string>
+				<string>doriancoin</string>
 			</array>
 		</dict>
 		<dict>
@@ -59,11 +59,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>App will use your camera to scan QR codes for Litecoin Payments</string>
+	<string>App will use your camera to scan QR codes for Doriancoin Payments</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Unlock &amp; Authorise payments using Face ID</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location is used to determine the best Buy/Sell Litecoin provider.</string>
+	<string>Your location is used to determine the best Buy/Sell Doriancoin provider.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Choose screenshots to send to in-app support or add photo ID verification.</string>
 	<key>UIAppFonts</key>

@@ -8,8 +8,8 @@ import React, {
 import {View, StyleSheet, Platform} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {FlashList} from '@shopify/flash-list';
-import {walletKitListUnspent} from 'react-native-turbo-lndltc';
-import {Utxo} from 'react-native-turbo-lndltc/protos/lightning_pb';
+import {walletKitListUnspent} from 'react-native-turbo-lnddsv';
+import {Utxo} from 'react-native-turbo-lnddsv/protos/lightning_pb';
 
 import GreyRoundButton from '../Buttons/GreyRoundButton';
 import TableTitle from '../Cells/TableTitle';

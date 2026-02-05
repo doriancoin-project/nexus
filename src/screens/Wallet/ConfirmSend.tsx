@@ -1,7 +1,7 @@
 import React from 'react';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {Utxo} from 'react-native-turbo-lndltc/protos/lightning_pb';
+import {Utxo} from 'react-native-turbo-lnddsv/protos/lightning_pb';
 
 import HeaderButton from '../../components/Buttons/HeaderButton';
 import SendConfirmation from '../../components/SendConfirmation';

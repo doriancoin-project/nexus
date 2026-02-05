@@ -432,7 +432,7 @@ const Settings: React.FC<Props> = props => {
           return (
             <View style={styles.switchContainer}>
               <TranslateText
-                textKey="litecoin_denomination"
+                textKey="doriancoin_denomination"
                 domain="settingsTab"
                 textStyle={styles.switchTitleText}
                 maxSizeInPixels={SCREEN_HEIGHT * 0.017}

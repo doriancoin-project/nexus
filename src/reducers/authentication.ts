@@ -1,8 +1,8 @@
 import {createAction, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {PURGE} from 'redux-persist';
 import {AppState} from 'react-native';
-import {subscribeState} from 'react-native-turbo-lndltc';
-import {WalletState} from 'react-native-turbo-lndltc/protos/lightning_pb';
+import {subscribeState} from 'react-native-turbo-lnddsv';
+import {WalletState} from 'react-native-turbo-lnddsv/protos/lightning_pb';
 import {AppThunk} from './types';
 
 import {authenticate} from '../utils/biometric';

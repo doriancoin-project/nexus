@@ -109,7 +109,7 @@ const Receive: React.FC<Props> = () => {
 
         <View style={styles.txTypeContainer}>
           <NewBlueButton
-            title="Litecoin"
+            title="Doriancoin"
             active={!isMwebAddress}
             onPress={() => {
               dispatch(getAddress(false));

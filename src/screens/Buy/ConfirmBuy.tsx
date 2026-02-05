@@ -117,7 +117,7 @@ const ConfirmBuy: React.FC<Props> = props => {
           returnRoute: 'ConfirmBuy',
         });
       } else {
-        throw new Error('Failed to Buy Litecoin URL (Moonpay)!');
+        throw new Error('Failed to Buy Doriancoin URL (Moonpay)!');
       }
     } catch (error) {
       dispatch(showError(String(error)));

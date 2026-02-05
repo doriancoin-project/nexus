@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-const LitecoinIcon = (props) => {
+const DoriancoinIcon = (props) => {
   const {size} = props;
   return (
     <LinearGradient
@@ -43,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LitecoinIcon;
+export default DoriancoinIcon;

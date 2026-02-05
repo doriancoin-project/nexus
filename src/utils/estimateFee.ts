@@ -1,6 +1,6 @@
 /**
- * MWEB Fee Calculator for Litecoin (TypeScript)
- * Based on Litecoin Core implementation (v0.21.2+)
+ * MWEB Fee Calculator for Doriancoin (TypeScript)
+ * Based on Doriancoin Core implementation (v0.21.2+)
  *
  * 1. Peg-out transactions: Fee = (vsize * regular_rate) + (mweb_weight * mweb_rate)
  * 2. Peg-in transactions: Fee = (vsize * regular_rate) + (mweb_weight * mweb_rate)
@@ -48,9 +48,9 @@ export interface RegularOutput {
 }
 
 export interface TransactionSpec {
-  /** Regular Litecoin inputs */
+  /** Regular Doriancoin inputs */
   inputs?: RegularInput[];
-  /** Regular Litecoin outputs */
+  /** Regular Doriancoin outputs */
   outputs?: RegularOutput[];
   /** MWEB inputs (for peg-out or MWEB-to-MWEB). Content not used; only length matters. */
   mwebInputs?: unknown[];
@@ -146,7 +146,7 @@ export const TX_SIZE_ESTIMATES = {
 
 /**
  * Calculate MWEB weight for a transaction
- * Based on mw::Weight::Calculate() from Litecoin Core
+ * Based on mw::Weight::Calculate() from Doriancoin Core
  *
  * - MWEB outputs have weight of 18
  * - Standard kernels have weight of 2
@@ -180,7 +180,7 @@ export function calculateMWEBWeight(
 }
 
 /**
- * Calculate regular Litecoin transaction weight
+ * Calculate regular Doriancoin transaction weight
  * Based on GetTransactionWeight() from consensus/validation.h
  *
  * IMPORTANT:
@@ -235,7 +235,7 @@ export function calculateVirtualSize(weight: number): number {
 
 /**
  * Calculate MWEB fee based on weight
- * Based on CFeeRate::GetMWEBFee() from Litecoin Core
+ * Based on CFeeRate::GetMWEBFee() from Doriancoin Core
  */
 export function calculateMWEBFee(
   mwebWeight: number,
@@ -246,7 +246,7 @@ export function calculateMWEBFee(
 
 /**
  * Calculate total transaction fee (regular + MWEB)
- * Based on CFeeRate::GetTotalFee() from Litecoin Core
+ * Based on CFeeRate::GetTotalFee() from Doriancoin Core
  *
  * IMPORTANT: The fee calculation appears to work as follows:
  * - For peg-out: The total fee is split between regular (vsize) and MWEB weight

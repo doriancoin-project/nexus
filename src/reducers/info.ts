@@ -5,7 +5,7 @@ import {
   getInfo as getLndInfo,
   getRecoveryInfo as getLndRecoveryInfo,
   neutrinoKitStatus,
-} from 'react-native-turbo-lndltc';
+} from 'react-native-turbo-lnddsv';
 
 import {AppThunk} from './types';
 import {poll} from '../utils/poll';

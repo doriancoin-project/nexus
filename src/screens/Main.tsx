@@ -16,12 +16,13 @@ import {
   useImage,
   Shadow,
 } from '@shopify/react-native-skia';
-import {
-  CUSTODY_MODEL,
-  dismissAllModals,
-  payment,
-  TransactionRequest,
-} from '@flexa/flexa-react-native';
+// Flexa removed
+// import {
+//   CUSTODY_MODEL,
+//   dismissAllModals,
+//   payment,
+//   TransactionRequest,
+// } from '@flexa/flexa-react-native';
 import {StackNavigationOptions} from '@react-navigation/stack';
 
 import NewAmountView from '../components/NewAmountView';
@@ -178,7 +179,9 @@ const Main: React.FC<Props> = props => {
   const confirmedBalance = useAppSelector(
     state => state.balance!.confirmedBalance,
   );
-  const isFlexaCustomer = useAppSelector(state => state.buy!.isFlexaCustomer);
+  // Flexa removed
+  // const isFlexaCustomer = useAppSelector(state => state.buy!.isFlexaCustomer);
+  const isFlexaCustomer = false;
   const [isPinModalOpened, setIsPinModalOpened] = useState(false);
   const pinModalAction = useRef<string>('view-seed-auth');
   const [loading, setLoading] = useState(false);
@@ -228,27 +231,28 @@ const Main: React.FC<Props> = props => {
     animatedWalletButtonArrowRotation,
   } = useMainAnims({isWalletsModalOpened, isTxDetailModalOpened});
 
-  // Flexa
-  const flexaAssetAccounts = useMemo(
-    () => [
-      {
-        displayName: 'Main Wallet',
-        assetAccountHash: uniqueId,
-        availableAssets: [
-          {
-            assetId: 'bip122:12a765e31ffd4059bada1e25190f6e98/slip44:2',
-            symbol: 'LTC',
-            displayName: 'Litecoin',
-            balance: Number(totalBalance) / 100000000, // sats -> Litecoin
-            balanceAvailable: Number(confirmedBalance) / 100000000,
-            icon: require('../assets/images/ltc-logo.png'),
-          },
-        ],
-        custodyModel: CUSTODY_MODEL.LOCAL,
-      },
-    ],
-    [uniqueId, totalBalance, confirmedBalance],
-  );
+  // Flexa removed
+  // const flexaAssetAccounts = useMemo(
+  //   () => [
+  //     {
+  //       displayName: 'Main Wallet',
+  //       assetAccountHash: uniqueId,
+  //       availableAssets: [
+  //         {
+  //           assetId: 'bip122:12a765e31ffd4059bada1e25190f6e98/slip44:2',
+  //           symbol: 'LTC',
+  //           displayName: 'Litecoin',
+  //           balance: Number(totalBalance) / 100000000,
+  //           balanceAvailable: Number(confirmedBalance) / 100000000,
+  //           icon: require('../assets/images/ltc-logo.png'),
+  //         },
+  //       ],
+  //       custodyModel: CUSTODY_MODEL.LOCAL,
+  //     },
+  //   ],
+  //   [uniqueId, totalBalance, confirmedBalance],
+  // );
+  const flexaAssetAccounts: any[] = [];
 
   const openPinModal = useCallback((action: string) => {
     pinModalAction.current = action;
@@ -277,67 +281,14 @@ const Main: React.FC<Props> = props => {
     [openPinModal],
   );
 
-  const paymentCallback = useCallback(
-    async (transactionRequest: TransactionRequest) => {
-      const {transaction, transactionSent, transactionFailed} =
-        transactionRequest;
-
-      dismissAllModals();
-      await sleep(200);
-
-      console.log(transaction);
-      const addrArray = transaction.destinationAddress.split(':');
-
-      // validation of destinationAddress
-      try {
-        if (!addrArray || addrArray.length !== 3) {
-          throw new Error('unknown address length');
-        }
-        if (addrArray[1] !== '12a765e31ffd4059bada1e25190f6e98') {
-          throw new Error('not a litecoin address');
-        }
-        const valid = await validateLtcAddress(addrArray[2]);
-        if (!valid) {
-          throw new Error('invalid litecoin address');
-        }
-      } catch (error) {
-        transactionFailed();
-        payment(flexaAssetAccounts, paymentCallback);
-        dispatch(showError(String(error)));
-      }
-
-      try {
-        // authenticate
-        await handleAuthenticationRequired('view-seed-auth');
-        setLoading(true);
-        // send coins
-        const txid = await dispatch(
-          sendOnchainPayment(
-            addrArray[2],
-            Math.trunc(Number(transaction.amount) * 100000000),
-            'Flexa Payment',
-          ),
-        );
-        console.log(txid);
-        transactionSent(txid);
-        setIsPinModalOpened(false);
-        setLoading(false);
-        // reopen flexa modal
-        payment(flexaAssetAccounts, paymentCallback);
-      } catch (error) {
-        transactionFailed();
-        setIsPinModalOpened(false);
-        setLoading(false);
-        payment(flexaAssetAccounts, paymentCallback);
-        dispatch(showError(String(error)));
-      }
-    },
-    [dispatch, flexaAssetAccounts, handleAuthenticationRequired],
-  );
+  // Flexa paymentCallback removed
+  const paymentCallback = useCallback(async (_transactionRequest: any) => {
+    // Flexa payment flow removed
+  }, []);
 
   const manualPayment = useCallback(async () => {
-    payment(flexaAssetAccounts, paymentCallback);
-  }, [flexaAssetAccounts, paymentCallback]);
+    // Flexa manual payment removed
+  }, []);
 
   // Transaction Detail Modal Swiping
   // const image = useImage(require('../assets/icons/search-icon.png'));
@@ -377,7 +328,7 @@ const Main: React.FC<Props> = props => {
   // Deeplink handler
   useEffect(() => {
     if (deeplinkSet) {
-      if (uri.startsWith('litecoin:')) {
+      if (uri.startsWith('doriancoin:')) {
         setBottomSheetFolded(false);
         setActiveTab(4);
       } else if (uri.startsWith('nexus://')) {
@@ -674,7 +625,7 @@ const Main: React.FC<Props> = props => {
         title={openedNotification?.title || 'Nexus Wallet'}
         text={
           openedNotification?.body ||
-          'Welcome to Nexus - a non-custodial Litecoin wallet'
+          'Welcome to Nexus - a non-custodial Doriancoin wallet'
         }
         subText={
           openedNotification?.data?.subText ||

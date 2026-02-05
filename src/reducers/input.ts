@@ -78,10 +78,10 @@ const handleFiatConversion =
   (amount: string, type: InputType): AppThunk =>
   (dispatch, getState) => {
     // subunit to sats
-    // sats -> litecoin
+    // sats -> doriancoin
     const subunit = getState().settings.subunit;
     const satoshis = subunitToSats(Number(amount), subunit);
-    const litecoin = satoshis / 100000000;
+    const doriancoin = satoshis / 100000000;
 
     if (type === 'buy') {
       const rate = getState().ticker.buyRate;
@@ -97,7 +97,7 @@ const handleFiatConversion =
       dispatch(updateFiatAmountAction(fiatAmount));
     } else if (type === 'ltc') {
       const rate = getState().ticker.ltcRate;
-      const fiatAmount = rate ? (litecoin * rate).toFixed(2) : '0';
+      const fiatAmount = rate ? (doriancoin * rate).toFixed(2) : '0';
       dispatch(updateFiatAmountAction(fiatAmount));
     }
   };
@@ -122,7 +122,7 @@ const handleAmountConversion =
       const rate = getState().ticker.ltcRate;
       const amount = rate ? parseFloat(fiatAmount) / rate : 0;
 
-      // convert litecoin to correct subunit
+      // convert doriancoin to correct subunit
       const amountInSats = amount * 100000000;
       const amountInSubunit = satsToSubunit(amountInSats, subunit);
       dispatch(updateAmountAction(amountInSubunit.toFixed(4)));

@@ -84,7 +84,7 @@ const ConfirmSellOnramper: React.FC<Props> = props => {
           returnRoute: 'ConfirmSellOnramper',
         });
       } else {
-        throw new Error('Failed to Sell Litecoin URL (Onramper)!');
+        throw new Error('Failed to Sell Doriancoin URL (Onramper)!');
       }
     } catch (error) {
       dispatch(showError(String(error)));
@@ -157,7 +157,7 @@ const ConfirmSellOnramper: React.FC<Props> = props => {
             toAddress={toAddress}
             amount={toAmount}
             fiatAmount={fiatAmount}
-            label="Sell Litecoin via Onramper"
+            label="Sell Doriancoin via Onramper"
             sendSuccessHandler={txid => {
               console.log(txid);
               setPaymentSuccess(true);
@@ -256,7 +256,7 @@ export const ConfirmSellOnramperNavigationOptions = (
   return {
     headerTitle: () => (
       <TranslateText
-        textKey={'sell_litecoin'}
+        textKey={'sell_doriancoin'}
         domain={'sellTab'}
         numberOfLines={1}
         textStyle={styles.headerTitle}

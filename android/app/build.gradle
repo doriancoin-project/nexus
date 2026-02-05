@@ -77,9 +77,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.litecoin.nexus"
+    namespace "com.doriancoin.nexus"
     defaultConfig {
-        applicationId "com.litecoin.nexus"
+        applicationId "com.doriancoin.nexus"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 17

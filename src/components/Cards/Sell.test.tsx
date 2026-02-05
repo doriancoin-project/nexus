@@ -24,7 +24,7 @@ const createMockStore = (initialState: any) => {
   });
 };
 
-jest.mock('react-native-turbo-lndltc', () => ({
+jest.mock('react-native-turbo-lnddsv', () => ({
   estimateFee: jest.fn(),
 }));
 
@@ -39,7 +39,7 @@ jest.mock('../../components/TranslateText', () => {
     if (textValue) {
       return textValue;
     }
-    if (textKey === 'n_ltc' && interpolationObj?.amount) {
+    if (textKey === 'n_dsv' && interpolationObj?.amount) {
       return `${interpolationObj.amount}`;
     }
     if (
@@ -143,7 +143,7 @@ describe('Sell Component UI', () => {
     // log('Rendered component:', JSON.stringify(json, null, 2));
     try {
       expect(jsonString).toContain('1.5');
-      expect(jsonString).toContain(' LTC');
+      expect(jsonString).toContain(' DSV');
       expect(jsonString).toContain('$100');
     } catch (error) {
       component.debug();
@@ -256,7 +256,7 @@ describe('Sell Component UI', () => {
     const jsonString = JSON.stringify(json);
     try {
       expect(jsonString).toContain('1.5');
-      expect(jsonString).toContain(' LTC');
+      expect(jsonString).toContain(' DSV');
       expect(jsonString).toContain('$75');
     } catch (error) {
       component.debug();

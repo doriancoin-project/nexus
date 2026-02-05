@@ -99,7 +99,7 @@ const ConfirmSell: React.FC<Props> = props => {
           returnRoute: 'ConfirmSell',
         });
       } else {
-        throw new Error('Failed to Sell Litecoin URL (Moonpay)!');
+        throw new Error('Failed to Sell Doriancoin URL (Moonpay)!');
       }
     } catch (error) {
       dispatch(showError(String(error)));
@@ -172,7 +172,7 @@ const ConfirmSell: React.FC<Props> = props => {
             toAddress={toAddress}
             amount={toAmount}
             fiatAmount={fiatAmount}
-            label="Sell Litecoin via Moonpay"
+            label="Sell Doriancoin via Moonpay"
             sendSuccessHandler={handleSendSuccess}
           />
         ) : (
@@ -207,7 +207,7 @@ export const ConfirmSellNavigationOptions = (
   return {
     headerTitle: () => (
       <TranslateText
-        textKey={'sell_litecoin'}
+        textKey={'sell_doriancoin'}
         domain={'sellTab'}
         numberOfLines={1}
         textStyle={styles.headerTitle}

@@ -86,22 +86,8 @@ function isObjectEmpty(obj: {[key: string]: any}) {
 }
 
 const getTickerData = (useTor: boolean) => {
-  return new Promise<{[key: string]: string}>(async (resolve, reject) => {
-    try {
-      const url = 'https://api.coinbase.com/v2/exchange-rates?currency=LTC';
-      const fetchOptions = {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      };
-      const {data} = await fetchResolve(url, fetchOptions, useTor);
-      resolve(data.rates);
-    } catch (error) {
-      reject(error);
-    }
-  });
+  // Price ticker disabled - no exchange listing for doriancoin
+  return Promise.resolve({} as {[key: string]: string});
 };
 
 // NOTE: if we will call buy and sell quotes separately depending on what
@@ -168,28 +154,15 @@ export const pollRates = (): AppThunk => async dispatch => {
 const fetchGranulatedHistoricalRates = async (
   useTor: boolean,
 ): Promise<TGranulatedPriceData> => {
-  const url = 'https://api.nexuswallet.com/api/prices/granulated';
-  const fetchOptions = {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  };
-
-  try {
-    const {data} = await fetchResolve(url, fetchOptions, useTor);
-    return data;
-  } catch (error) {
-    return {
-      latestPrice: [0, 0, 0, 0, 0, 0],
-      fifteenMins: [],
-      hourly: [],
-      sixHrs: [],
-      daily: [],
-      all: [],
-    } as TGranulatedPriceData;
-  }
+  // Historical rates disabled - no exchange listing for doriancoin
+  return {
+    latestPrice: [0, 0, 0, 0, 0, 0],
+    fifteenMins: [],
+    hourly: [],
+    sixHrs: [],
+    daily: [],
+    all: [],
+  } as TGranulatedPriceData;
 };
 
 export const updatedRatesInFiat =

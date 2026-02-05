@@ -1,4 +1,4 @@
-package com.litecoin.nexus
+package com.doriancoin.nexus
 
 import android.os.Build
 import android.os.Bundle

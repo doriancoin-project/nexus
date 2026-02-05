@@ -108,7 +108,7 @@ const Dial: React.FC<Props> = props => {
               numberOfLines={1}
             />
             <TranslateText
-              textKey="when_ltc"
+              textKey="when_dsv"
               domain="alertsTab"
               maxSizeInPixels={SCREEN_HEIGHT * 0.04}
               textStyle={styles.text}

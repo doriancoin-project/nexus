@@ -29,7 +29,7 @@ type AddressInfo = {
 };
 
 const addressTypes: {[key: number]: {type: AddressType; network: Network}} = {
-  0x30: {
+  0x1e: {
     type: AddressType.p2pkh,
     network: Network.mainnet,
   },
@@ -39,7 +39,7 @@ const addressTypes: {[key: number]: {type: AddressType; network: Network}} = {
     network: Network.testnet,
   },
 
-  0x32: {
+  0x05: {
     type: AddressType.p2sh,
     network: Network.mainnet,
   },
@@ -60,9 +60,9 @@ const parseBech32 = (address: string): AddressInfo => {
   }
 
   const mapPrefixToNetwork: {[key: string]: Network} = {
-    ltc: Network.mainnet,
-    tltc: Network.testnet,
-    rltc: Network.regtest,
+    dsv: Network.mainnet,
+    tdsv: Network.testnet,
+    rdsv: Network.regtest,
   };
 
   const network: Network = mapPrefixToNetwork[decoded.prefix];
@@ -106,7 +106,7 @@ const parseMweb = (address: string): AddressInfo => {
   }
 
   const mapPrefixToNetwork: {[key: string]: Network} = {
-    ltcmweb: Network.mainnet,
+    dsvmweb: Network.mainnet,
     tmweb: Network.testnet,
     rmweb: Network.regtest,
   };
@@ -135,7 +135,7 @@ const getAddressInfo = (address: string): AddressInfo => {
 
   // check and handle bech32 address
   const prefix = address.substring(0, 4).toLowerCase();
-  if (prefix === 'ltc1' || prefix === 'tltc') {
+  if (prefix === 'dsv1' || prefix === 'tdsv') {
     if (address.length >= 15 && address.length <= 92) {
       return parseBech32(address);
     } else {
@@ -145,7 +145,7 @@ const getAddressInfo = (address: string): AddressInfo => {
 
   // check and handle mweb address
   const mwebPrefix = address.substring(0, 6).toLowerCase();
-  if (mwebPrefix === 'ltcmwe' || mwebPrefix === 'tmweb1') {
+  if (mwebPrefix === 'dsvmwe' || mwebPrefix === 'tmweb1') {
     return parseMweb(address);
   }
 

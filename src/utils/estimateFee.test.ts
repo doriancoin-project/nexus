@@ -1,6 +1,6 @@
 import {estimateMWEBTransaction} from './estimateFee';
 
-describe('estimateFee compared against real transactions generated with Litecoin Core v0.21.2', () => {
+describe('estimateFee compared against real transactions generated with Doriancoin Core v0.21.2', () => {
   const transactions = {
     // MWEB to P2WPKH (peg-out)
     pegOut: {

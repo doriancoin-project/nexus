@@ -21,7 +21,7 @@
 // SOFTWARE.
 
 import * as bitcoin from 'bitcoinjs-lib';
-import {LITECOIN} from './litecoin';
+import {DORIANCOIN} from './doriancoin';
 
 function getWitnessUtxoDefault(utxoHex: string, value: number): any {
   let out = {script: {} as Buffer<ArrayBuffer>, value: 0};
@@ -34,7 +34,7 @@ function getWitnessUtxoP2WPKH(publicKey: Buffer, value: number): any {
   let out = {script: {} as Buffer<ArrayBuffer>, value: 0};
   out.script = bitcoin.payments.p2wpkh({
     pubkey: publicKey,
-    network: LITECOIN,
+    network: DORIANCOIN,
   }).output as Buffer<ArrayBufferLike>;
   out.value = value;
   return out;
@@ -45,9 +45,9 @@ function getWitnessUtxoP2SHP2WPKH(publicKey: Buffer, value: number): any {
   out.script = bitcoin.payments.p2sh({
     redeem: bitcoin.payments.p2wpkh({
       pubkey: publicKey,
-      network: LITECOIN,
+      network: DORIANCOIN,
     }),
-    network: LITECOIN,
+    network: DORIANCOIN,
   }).output as Buffer<ArrayBufferLike>;
   out.value = value;
   return out;
@@ -95,33 +95,33 @@ export default function getTxInputData(
     case 'P2SH-P2WPKH':
       mixin2.redeemScript = bitcoin.payments.p2wpkh({
         pubkey: pubKey,
-        network: LITECOIN,
+        network: DORIANCOIN,
       }).output;
       break;
     // NOTE: not tested
     // case 'P2SH':
     //   mixin2.redeemScript = bitcoin.payments.p2sh({
     //     pubkey: pubKey,
-    //     network: LITECOIN,
+    //     network: DORIANCOIN,
     //   });
     //   break;
     // case 'P2WSH':
     //   mixin2.witnessScript = bitcoin.payments.p2wsh({
     //     pubkey: pubKey,
-    //     network: LITECOIN,
+    //     network: DORIANCOIN,
     //   });
     //   break;
     // case 'P2SH-P2WSH':
     //   mixin2.witnessScript = bitcoin.payments.p2wsh({
     //     redeem: bitcoin.payments.p2sh({
     //       pubkey: pubKey,
-    //       network: LITECOIN,
+    //       network: DORIANCOIN,
     //     }),
-    //     network: LITECOIN,
+    //     network: DORIANCOIN,
     //   });
     //   mixin2.redeemScript = bitcoin.payments.p2sh({
     //     pubkey: pubKey,
-    //     network: LITECOIN,
+    //     network: DORIANCOIN,
     //   });
     //   break;
     case 'P2PKH':

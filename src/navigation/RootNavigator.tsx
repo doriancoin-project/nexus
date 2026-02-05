@@ -20,7 +20,7 @@ const Theme = {
 };
 
 const Linking = {
-  prefixes: ['litecoin://', 'litecoin:'],
+  prefixes: ['doriancoin://', 'doriancoin:'],
   config: {
     screens: {
       Loading: '*', // catch all

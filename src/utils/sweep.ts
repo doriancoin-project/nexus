@@ -3,7 +3,7 @@ import * as bitcoin from 'bitcoinjs-lib';
 import {ECPairFactory, ECPairInterface} from 'ecpair';
 import wif from 'wif';
 
-import {LITECOIN} from './litecoin';
+import {DORIANCOIN} from './doriancoin';
 import getTxInputData from './getTxInputData';
 import {estimateTxSize} from './estimateTxSize';
 import {getDerivedKeyPairsWithBalance} from './hdWallets';
@@ -219,7 +219,7 @@ const createRawTxsFromHDWallet = async (
     // Collect all inputs with their corresponding key pairs
     await Promise.all(
       keyPairsWithBalance.map(async addressWithKeyPair => {
-        const sweepy = await sweepAddressViaLitecoinspace(
+        const sweepy = await sweepAddressViaDSVBlocks(
           addressWithKeyPair.address,
           addressWithKeyPair.keyPair,
           'P2PKH',
@@ -282,7 +282,7 @@ export const sweepWIF = async (
     }
   }
 
-  const keyPair = ECPair.fromWIF(wifString, LITECOIN);
+  const keyPair = ECPair.fromWIF(wifString, DORIANCOIN);
 
   let p2shAddress;
   let bech32Address;
@@ -296,14 +296,14 @@ export const sweepWIF = async (
   // build p2pkh address
   const legacyAddress = bitcoin.payments.p2pkh({
     pubkey: keyPair.publicKey,
-    network: LITECOIN,
+    network: DORIANCOIN,
   }).address;
 
   if (legacyAddress !== undefined) {
     address = legacyAddress;
     inputScript = 'P2PKH';
     const {inputsArr, addressBalance, addressUnspentsLength} =
-      await sweepAddressViaLitecoinspace(
+      await sweepAddressViaDSVBlocks(
         String(address),
         keyPair,
         String(inputScript),
@@ -320,16 +320,16 @@ export const sweepWIF = async (
     p2shAddress = bitcoin.payments.p2sh({
       redeem: bitcoin.payments.p2wpkh({
         pubkey: keyPair.publicKey,
-        network: LITECOIN,
+        network: DORIANCOIN,
       }),
-      network: LITECOIN,
+      network: DORIANCOIN,
     }).address;
 
     if (p2shAddress !== undefined) {
       address = p2shAddress;
       inputScript = 'P2SH-P2WPKH';
       const {inputsArr, addressBalance, addressUnspentsLength} =
-        await sweepAddressViaLitecoinspace(
+        await sweepAddressViaDSVBlocks(
           String(address),
           keyPair,
           String(inputScript),
@@ -343,14 +343,14 @@ export const sweepWIF = async (
     // build bech32 address
     bech32Address = bitcoin.payments.p2wpkh({
       pubkey: keyPair.publicKey,
-      network: LITECOIN,
+      network: DORIANCOIN,
     }).address;
 
     if (bech32Address !== undefined) {
       address = bech32Address;
       inputScript = 'P2WPKH';
       const {inputsArr, addressBalance, addressUnspentsLength} =
-        await sweepAddressViaLitecoinspace(
+        await sweepAddressViaDSVBlocks(
           String(address),
           keyPair,
           String(inputScript),
@@ -365,7 +365,7 @@ export const sweepWIF = async (
     // const internalPubkey = keyPair.publicKey.slice(1, 33);
     // bech32mAddress = bitcoin.payments.p2tr({
     //   internalPubkey: internalPubkey,
-    //   network: LITECOIN,
+    //   network: DORIANCOIN,
     // }).address;
   }
 
@@ -414,7 +414,7 @@ const sweepAddress = (
 
     try {
       const unspents = await fetchResolve(
-        `https://litecoinspace.org/api/address/${address}/utxo`,
+        `https://blocks.doriancoin.com/api/address/${address}/utxo`,
         {
           method: 'GET',
           headers,
@@ -436,7 +436,7 @@ const sweepAddress = (
           addressBalance += utxo.value;
 
           const utxoHex = await fetchResolve(
-            `https://litecoinspace.org/api/tx/${utxo.txid}/hex`,
+            `https://blocks.doriancoin.com/api/tx/${utxo.txid}/hex`,
             {
               method: 'GET',
               headers,
@@ -497,9 +497,9 @@ const sweepAddress = (
   });
 };
 
-// NOTE: new endpoint required, the `https://litecoinspace.org/api/address/${address}/utxo-hex`
+// NOTE: new endpoint required, the `https://blocks.doriancoin.com/api/address/${address}/utxo-hex`
 // endpoint should return uxto data with the hex value appended to every unspent
-const sweepAddressViaLitecoinspace = (
+const sweepAddressViaDSVBlocks = (
   address: string,
   keyPair: ECPairInterface,
   inputScript: string,
@@ -513,7 +513,7 @@ const sweepAddressViaLitecoinspace = (
 
     try {
       const unspents = await fetchResolve(
-        `https://litecoinspace.org/api/address/${address}/utxo-hex`,
+        `https://blocks.doriancoin.com/api/address/${address}/utxo-hex`,
         {
           method: 'GET',
           headers,
@@ -592,7 +592,7 @@ const createTopUpTx = (
   inputScript: string,
 ): string => {
   // construct psbt tx
-  const psbt = new bitcoin.Psbt({network: LITECOIN});
+  const psbt = new bitcoin.Psbt({network: DORIANCOIN});
 
   // Add all inputs
   inputsWithKeyPairs.forEach(({input}) => {

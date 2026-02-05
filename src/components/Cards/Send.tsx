@@ -11,7 +11,7 @@ import {RouteProp, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Animated, {useSharedValue, withTiming} from 'react-native-reanimated';
-import {Utxo} from 'react-native-turbo-lndltc/protos/lightning_pb';
+import {Utxo} from 'react-native-turbo-lnddsv/protos/lightning_pb';
 
 import PlasmaModal from '../Modals/PlasmaModal';
 import SelectCoinsModalContent from '../Modals/SelectCoinsModalContent';
@@ -28,7 +28,7 @@ import {sleep} from '../../utils/poll';
 import {showError} from '../../reducers/errors';
 import {resetInputs} from '../../reducers/input';
 import {
-  litecoinToSubunitSelector,
+  doriancoinToSubunitSelector,
   subunitToSatsSelector,
 } from '../../reducers/settings';
 import {
@@ -75,8 +75,8 @@ const Send = forwardRef<URIHandlerRef, Props>((props, ref) => {
   const scrollViewRef = useRef<ScrollView | null>(null);
 
   const convertToSats = useAppSelector(state => subunitToSatsSelector(state));
-  const convertLitecoinToSubunit = useAppSelector(state =>
-    litecoinToSubunitSelector(state),
+  const convertDoriancoinToSubunit = useAppSelector(state =>
+    doriancoinToSubunitSelector(state),
   );
   const amount = useAppSelector(state => state.input!.amount);
   const fiatAmount = useAppSelector(state => state.input!.fiatAmount);
@@ -211,7 +211,7 @@ const Send = forwardRef<URIHandlerRef, Props>((props, ref) => {
     try {
       await validate(data);
     } catch (error) {
-      dispatch(showError('Invalid Litecoin Address in QR Code'));
+      dispatch(showError('Invalid Doriancoin Address in QR Code'));
       return;
     }
   };
@@ -231,8 +231,8 @@ const Send = forwardRef<URIHandlerRef, Props>((props, ref) => {
   // validates data before sending!
   const validate = async (data: any) => {
     try {
-      // handle BIP21 litecoin URI
-      if (data.startsWith('litecoin:')) {
+      // handle BIP21 doriancoin URI
+      if (data.startsWith('doriancoin:')) {
         const decoded = decodeBIP21(data);
         const valid = validateLtcAddress(decoded.address);
 
@@ -243,9 +243,9 @@ const Send = forwardRef<URIHandlerRef, Props>((props, ref) => {
 
         // If additional data included, set amount/address
         if (decoded.options.amount) {
-          // BIP21 uses decimal Litecoin subunit
-          // convert Litecoin to currently selected subunit
-          const amt = convertLitecoinToSubunit(Number(decoded.options.amount));
+          // BIP21 uses decimal Doriancoin subunit
+          // convert Doriancoin to currently selected subunit
+          const amt = convertDoriancoinToSubunit(Number(decoded.options.amount));
           dispatch(updateAmount(amt.toString(), 'ltc'));
         }
         // Could be setting wrong labels
@@ -258,7 +258,7 @@ const Send = forwardRef<URIHandlerRef, Props>((props, ref) => {
         return;
       }
 
-      // handle Litecoin Address
+      // handle Doriancoin Address
       const valid = validateLtcAddress(data);
 
       if (!valid) {
@@ -472,7 +472,7 @@ const Send = forwardRef<URIHandlerRef, Props>((props, ref) => {
         ref={scrollViewRef}
         contentContainerStyle={styles.scrollViewContent}>
         <TranslateText
-          textKey="send_litecoin"
+          textKey="send_doriancoin"
           domain="sendTab"
           maxSizeInPixels={SCREEN_HEIGHT * 0.025}
           textStyle={styles.titleText}
@@ -668,7 +668,7 @@ const Send = forwardRef<URIHandlerRef, Props>((props, ref) => {
         </View>  */}
               <View style={styles.blueBtnContainer}>
                 <BlueButton
-                  textKey="send_litecoin"
+                  textKey="send_doriancoin"
                   textDomain="sendTab"
                   onPress={() => {
                     handleSend();

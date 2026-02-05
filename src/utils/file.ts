@@ -10,7 +10,7 @@ export const fileExists = async (path: string) => {
 
 // wallet database
 export const deleteWalletDB = async () => {
-  const dbPath = `${lndDir}/lndltc/data/chain/litecoin/mainnet/wallet.db`;
+  const dbPath = `${lndDir}/lnddsv/data/chain/doriancoin/mainnet/wallet.db`;
   try {
     // do not error out when file does not exist
     if ((await fileExists(dbPath)) === false) {
@@ -25,7 +25,7 @@ export const deleteWalletDB = async () => {
 
 // delete macaroon files
 export const deleteMacaroonFiles = async () => {
-  const macaroonDir = `${lndDir}/lndltc/data/chain/litecoin/mainnet`;
+  const macaroonDir = `${lndDir}/lnddsv/data/chain/doriancoin/mainnet`;
   const macaroonFiles = [
     'admin.macaroon',
     'chainnotifier.macaroon',
@@ -52,9 +52,9 @@ export const deleteMacaroonFiles = async () => {
   }
 };
 
-// delete lndltc directory
+// delete lnddsv directory
 export const deleteLNDDir = async () => {
-  const path = `${lndDir}/lndltc`;
+  const path = `${lndDir}/lnddsv`;
   try {
     await RNFS.unlink(path);
   } catch (error) {

@@ -1,44 +1,44 @@
 // subunit is how we represent the unit used
 // by the wallet in the settings store
 
-export const litecoinToSubunit = (amount: number, subunit: number) => {
+export const doriancoinToSubunit = (amount: number, subunit: number) => {
   switch (subunit) {
-    case 0: // litecoin
+    case 0: // doriancoin
       return amount;
     case 1: // lites
       return amount * 1000;
     case 2: // photons
       return amount * 1000000;
     default:
-      // always default litecoin
+      // always default doriancoin
       return amount;
   }
 };
 
 export const subunitToSats = (amount: number, subunit: number) => {
   switch (subunit) {
-    case 0: // litecoin
+    case 0: // doriancoin
       return amount * 100000000;
     case 1: // lites
       return amount * 100000;
     case 2: // photons
       return amount * 100;
     default:
-      // always default litecoin
+      // always default doriancoin
       return amount * 100000000;
   }
 };
 
 export const satsToSubunit = (amount: number, subunit: number) => {
   switch (subunit) {
-    case 0: // litecoin
+    case 0: // doriancoin
       return amount / 100000000;
     case 1: // lites
       return amount / 100000;
     case 2: // photons
       return amount / 100;
     default:
-      // always default litecoin
+      // always default doriancoin
       return amount / 100000000;
   }
 };

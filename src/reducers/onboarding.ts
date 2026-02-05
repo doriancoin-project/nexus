@@ -328,9 +328,9 @@ const extractNeutrinoCache = (): AppThunk => async dispatch => {
   try {
     console.log('starting extraction!');
     // delete any preexisting filter files if any exists
-    const blkHeaderPath = `${RNFS.DocumentDirectoryPath}/lndltc/data/chain/litecoin/mainnet/block_headers.bin`;
-    const neutrinodbPath = `${RNFS.DocumentDirectoryPath}/lndltc/data/chain/litecoin/mainnet/neutrino.db`;
-    const filterHeaderPath = `${RNFS.DocumentDirectoryPath}/lndltc/data/chain/litecoin/mainnet/reg_filter_headers.bin`;
+    const blkHeaderPath = `${RNFS.DocumentDirectoryPath}/lnddsv/data/chain/doriancoin/mainnet/block_headers.bin`;
+    const neutrinodbPath = `${RNFS.DocumentDirectoryPath}/lnddsv/data/chain/doriancoin/mainnet/neutrino.db`;
+    const filterHeaderPath = `${RNFS.DocumentDirectoryPath}/lnddsv/data/chain/doriancoin/mainnet/reg_filter_headers.bin`;
     if (await fileExists(blkHeaderPath)) {
       await RNFS.unlink(blkHeaderPath);
     }
@@ -346,7 +346,7 @@ const extractNeutrinoCache = (): AppThunk => async dispatch => {
     });
     await unzip(
       `${RNFS.DocumentDirectoryPath}/mainnet.zip`,
-      `${RNFS.DocumentDirectoryPath}/lndltc/data/chain/litecoin/`,
+      `${RNFS.DocumentDirectoryPath}/lnddsv/data/chain/doriancoin/`,
     );
     // clean up
     await RNFS.unlink(`${ReactNativeBlobUtil.fs.dirs.DocumentDir}/mainnet.zip`);

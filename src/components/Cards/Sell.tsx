@@ -28,7 +28,7 @@ import {
   updateFiatAmount,
 } from '../../reducers/input';
 import {callRates} from '../../reducers/ticker';
-import {estimateFee} from 'react-native-turbo-lndltc';
+import {estimateFee} from 'react-native-turbo-lnddsv';
 
 import TranslateText from '../../components/TranslateText';
 import CustomSafeAreaView from '../../components/CustomSafeAreaView';
@@ -353,7 +353,7 @@ const Sell: React.FC<Props> = () => {
                 numberOfLines={1}
               />
               <TranslateText
-                textKey={'n_ltc'}
+                textKey={'n_dsv'}
                 domain={'buyTab'}
                 textStyle={{...styles.buyText, color: '#2C72FF'}}
                 animatedFontSizeValue={ltcFontSize}
@@ -369,7 +369,7 @@ const Sell: React.FC<Props> = () => {
                 }}
               />
               <TranslateText
-                textValue=" LTC"
+                textValue=" DSV"
                 textStyle={styles.buyText}
                 animatedFontSizeValue={ltcFontSize}
                 numberOfLines={1}

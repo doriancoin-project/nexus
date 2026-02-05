@@ -4,7 +4,7 @@
 import qs from 'qs';
 
 const decode = (uri, urnScheme) => {
-  urnScheme = urnScheme || 'litecoin';
+  urnScheme = urnScheme || 'doriancoin';
   var urnSchemeActual = uri.slice(0, urnScheme.length).toLowerCase();
   if (urnSchemeActual !== urnScheme || uri.charAt(urnScheme.length) !== ':') {
     throw new Error('Invalid BIP21 URI: ' + uri);
@@ -33,7 +33,7 @@ const decode = (uri, urnScheme) => {
 
 const encode = (address, options, urnScheme) => {
   options = options || {};
-  var scheme = urnScheme || 'litecoin';
+  var scheme = urnScheme || 'doriancoin';
   var query = qs.stringify(options);
 
   if (options.amount) {
@@ -49,9 +49,9 @@ const encode = (address, options, urnScheme) => {
 };
 
 export const decodeBIP21 = uri => {
-  return decode(uri, 'litecoin');
+  return decode(uri, 'doriancoin');
 };
 
 export const encodeBIP21 = (address, options) => {
-  return encode(address, options, 'litecoin');
+  return encode(address, options, 'doriancoin');
 };

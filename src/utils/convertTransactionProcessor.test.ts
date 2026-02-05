@@ -5,20 +5,20 @@ describe('processConvertTransactions', () => {
   const mockGetPriceOnDate = jest.fn().mockResolvedValue(50000);
 
   const convertTx: IConvertedTx = {
-    destinationAddress: 'ltc1qlxu4hknq44z5pxn2kc5c7vgsayhkmlptdskg5j',
+    destinationAddress: 'dsv1qlxu4hknq44z5pxn2kc5c7vgsayhkmlptdskg5j',
     targetAmount: 600000000,
     timestamp: 1754818308,
     conversionType: 'regular',
     selectedUtxos: [
       {
         address:
-          'ltcmweb1qqgwyejyugm783aldxdk0jwwcmv4pxxyn5m0ra4sg0mne0dvu0hc6wqnd9fdj6wma0sawycmjyhd3knmxjt5gezs62659qfldq5yf6pga9qw025wj',
+          'dsvmweb1qqgwyejyugm783aldxdk0jwwcmv4pxxyn5m0ra4sg0mne0dvu0hc6wqnd9fdj6wma0sawycmjyhd3knmxjt5gezs62659qfldq5yf6pga9qw025wj',
         amountSat: 494823407,
         addressType: 6,
       },
       {
         address:
-          'ltcmweb1qqgfz3y4a3zuxm4muac6qzjhj93tgxfqkyzkqaxefc97j0r4ukrxyzqhzyhl8a4cnwffdtutwa46j80ruu04medu0xqn083hrlrpl2c9hvq78d65d',
+          'dsvmweb1qqgfz3y4a3zuxm4muac6qzjhj93tgxfqkyzkqaxefc97j0r4ukrxyzqhzyhl8a4cnwffdtutwa46j80ruu04medu0xqn083hrlrpl2c9hvq78d65d',
         amountSat: 160616347,
         addressType: 6,
       },
@@ -68,7 +68,7 @@ describe('processConvertTransactions', () => {
         outputDetails: [
           {
             address:
-              'ltc1gasazujhc3s9kylgppljerpqx0vp7d4vc2t8ek2vcaxnn8kgcc0as28k7fs',
+              'dsv1gasazujhc3s9kylgppljerpqx0vp7d4vc2t8ek2vcaxnn8kgcc0as28k7fs',
             amount: 17274751704039,
             isOurAddress: false,
             outputIndex: 0,
@@ -76,7 +76,7 @@ describe('processConvertTransactions', () => {
             pkScript: 'script1',
           },
           {
-            address: 'ltc1qlxu4hknq44z5pxn2kc5c7vgsayhkmlptdskg5j', // DESTINATION ADDRESS
+            address: 'dsv1qlxu4hknq44z5pxn2kc5c7vgsayhkmlptdskg5j', // DESTINATION ADDRESS
             amount: 600000000,
             isOurAddress: true,
             outputIndex: 1,
@@ -84,7 +84,7 @@ describe('processConvertTransactions', () => {
             pkScript: 'script2',
           },
           {
-            address: 'LP3SFCDkcA6nE8RJhug29XZnyTcRqHUKxf',
+            address: 'DP3SFCDkcA6nE8RJhug29XZnyTcRqHUKxf',
             amount: 289940000,
             isOurAddress: false,
             outputIndex: 2,
@@ -115,7 +115,7 @@ describe('processConvertTransactions', () => {
         outputDetails: [
           {
             address:
-              'ltcmweb1qqgwyejyugm783aldxdk0jwwcmv4pxxyn5m0ra4sg0mne0dvu0hc6wqnd9fdj6wma0sawycmjyhd3knmxjt5gezs62659qfldq5yf6pga9qw025wj', // CHANGE ADDRESS (matches selectedUtxos[0])
+              'dsvmweb1qqgwyejyugm783aldxdk0jwwcmv4pxxyn5m0ra4sg0mne0dvu0hc6wqnd9fdj6wma0sawycmjyhd3knmxjt5gezs62659qfldq5yf6pga9qw025wj', // CHANGE ADDRESS (matches selectedUtxos[0])
             amount: 55419654,
             isOurAddress: true,
             outputIndex: 0,
@@ -233,12 +233,12 @@ describe('processConvertTransactions', () => {
     // Check that all expected addresses are present
     const addresses = processedTx.outputDetails.map(output => output.address);
     expect(addresses).toContain(
-      'ltc1gasazujhc3s9kylgppljerpqx0vp7d4vc2t8ek2vcaxnn8kgcc0as28k7fs',
+      'dsv1gasazujhc3s9kylgppljerpqx0vp7d4vc2t8ek2vcaxnn8kgcc0as28k7fs',
     );
-    expect(addresses).toContain('ltc1qlxu4hknq44z5pxn2kc5c7vgsayhkmlptdskg5j'); // Destination
-    expect(addresses).toContain('LP3SFCDkcA6nE8RJhug29XZnyTcRqHUKxf');
+    expect(addresses).toContain('dsv1qlxu4hknq44z5pxn2kc5c7vgsayhkmlptdskg5j'); // Destination
+    expect(addresses).toContain('DP3SFCDkcA6nE8RJhug29XZnyTcRqHUKxf');
     expect(addresses).toContain(
-      'ltcmweb1qqgwyejyugm783aldxdk0jwwcmv4pxxyn5m0ra4sg0mne0dvu0hc6wqnd9fdj6wma0sawycmjyhd3knmxjt5gezs62659qfldq5yf6pga9qw025wj',
+      'dsvmweb1qqgwyejyugm783aldxdk0jwwcmv4pxxyn5m0ra4sg0mne0dvu0hc6wqnd9fdj6wma0sawycmjyhd3knmxjt5gezs62659qfldq5yf6pga9qw025wj',
     ); // Change
   });
 
@@ -256,7 +256,7 @@ describe('processConvertTransactions', () => {
           blockHeight: 2947599,
           outputDetails: [
             {
-              address: 'ltc1qlxu4hknq44z5pxn2kc5c7vgsayhkmlptdskg5j', // Same as destination
+              address: 'dsv1qlxu4hknq44z5pxn2kc5c7vgsayhkmlptdskg5j', // Same as destination
               amount: 100000,
               isOurAddress: true,
               outputIndex: 0,
@@ -287,7 +287,7 @@ describe('processConvertTransactions', () => {
     expect(uniqueAddresses.size).toBe(addresses.length);
     expect(
       addresses.filter(
-        addr => addr === 'ltc1qlxu4hknq44z5pxn2kc5c7vgsayhkmlptdskg5j',
+        addr => addr === 'dsv1qlxu4hknq44z5pxn2kc5c7vgsayhkmlptdskg5j',
       ),
     ).toHaveLength(1);
   });
@@ -394,10 +394,10 @@ describe('processConvertTransactions', () => {
   // Additional comprehensive tests with real transaction data
   describe('Real transaction data tests', () => {
     const additionalConvertTxs: IConvertedTx[] = [
-      // Convert TX 1: ltc1qgc8kd8f8cd4ghznw92fhc72ycrlzp93ugsm99h (1 LTC target)
+      // Convert TX 1: dsv1qgc8kd8f8cd4ghznw92fhc72ycrlzp93ugsm99h (1 LTC target)
       {
         conversionType: 'regular',
-        destinationAddress: 'ltc1qgc8kd8f8cd4ghznw92fhc72ycrlzp93ugsm99h',
+        destinationAddress: 'dsv1qgc8kd8f8cd4ghznw92fhc72ycrlzp93ugsm99h',
         selectedOutpoints: [
           '9418a2c9b10948baee498776f3dc0c62c23d97b19030fecbbf6ddc1be1d3534d:0',
           '0e2909713fbe21b551e77a9f658f105fd355398d4539eb436c3351b13e10ab78:0',
@@ -406,19 +406,19 @@ describe('processConvertTransactions', () => {
         selectedUtxos: [
           {
             address:
-              'ltcmweb1qqgwyejyugm783aldxdk0jwwcmv4pxxyn5m0ra4sg0mne0dvu0hc6wqnd9fdj6wma0sawycmjyhd3knmxjt5gezs62659qfldq5yf6pga9qw025wj',
+              'dsvmweb1qqgwyejyugm783aldxdk0jwwcmv4pxxyn5m0ra4sg0mne0dvu0hc6wqnd9fdj6wma0sawycmjyhd3knmxjt5gezs62659qfldq5yf6pga9qw025wj',
             amountSat: 55419654,
             addressType: 6,
           },
           {
             address:
-              'ltcmweb1qqw2dkg77ekn7r0exy6788q3n5lzqq9z50338q46w6nhnmz4pwuks2qhmglcsnsr9dkn294pzv95hzmqq9l0mqwd0w2yynghj0hxav9uyxg6rlhkc',
+              'dsvmweb1qqw2dkg77ekn7r0exy6788q3n5lzqq9z50338q46w6nhnmz4pwuks2qhmglcsnsr9dkn294pzv95hzmqq9l0mqwd0w2yynghj0hxav9uyxg6rlhkc',
             amountSat: 39979900,
             addressType: 6,
           },
           {
             address:
-              'ltcmweb1qqw55czgfd60mgq9063l3mep5wsmmcvdtrfw53k2e0th7f38a6hlzqqnjwkqgrnmsdj4nu72daqdzfp9euhs6v8c3547hzseqa0adnqfnluxjy2mh',
+              'dsvmweb1qqw55czgfd60mgq9063l3mep5wsmmcvdtrfw53k2e0th7f38a6hlzqqnjwkqgrnmsdj4nu72daqdzfp9euhs6v8c3547hzseqa0adnqfnluxjy2mh',
             amountSat: 9050796,
             addressType: 6,
           },
@@ -426,17 +426,17 @@ describe('processConvertTransactions', () => {
         targetAmount: 100000000,
         timestamp: 1754927783,
       },
-      // Convert TX 2: ltc1qdze7y7chruzccmegt6tu0ewrltjm7k7xtux6us (0.04 LTC target)
+      // Convert TX 2: dsv1qdze7y7chruzccmegt6tu0ewrltjm7k7xtux6us (0.04 LTC target)
       {
         conversionType: 'regular',
-        destinationAddress: 'ltc1qdze7y7chruzccmegt6tu0ewrltjm7k7xtux6us',
+        destinationAddress: 'dsv1qdze7y7chruzccmegt6tu0ewrltjm7k7xtux6us',
         selectedOutpoints: [
           'bcfb328017ff7299f7ed48a57ad2174bfa163cbef18fdd37af014758e8b6cf6c:0',
         ],
         selectedUtxos: [
           {
             address:
-              'ltcmweb1qq22pdzz8vc6h06hawcmutm3hgu4x35anjwhygz3fuzfr46070794kqjf5mzr40ddxt5rrr7a0qprtcdgs0wzdxl72fevyzr5dm97t3smactj2muf',
+              'dsvmweb1qq22pdzz8vc6h06hawcmutm3hgu4x35anjwhygz3fuzfr46070794kqjf5mzr40ddxt5rrr7a0qprtcdgs0wzdxl72fevyzr5dm97t3smactj2muf',
             amountSat: 4430250,
             addressType: 6,
           },
@@ -444,10 +444,10 @@ describe('processConvertTransactions', () => {
         targetAmount: 4000000,
         timestamp: 1754932187,
       },
-      // Convert TX 3: ltc1qgdytp7lyhfl7tpg6cpm67zmgh6k28gv0a29t8e (0.005 LTC target)
+      // Convert TX 3: dsv1qgdytp7lyhfl7tpg6cpm67zmgh6k28gv0a29t8e (0.005 LTC target)
       {
         conversionType: 'regular',
-        destinationAddress: 'ltc1qgdytp7lyhfl7tpg6cpm67zmgh6k28gv0a29t8e',
+        destinationAddress: 'dsv1qgdytp7lyhfl7tpg6cpm67zmgh6k28gv0a29t8e',
         selectedOutpoints: [
           '51b84f87512b030b603006aef20b5e65d9464b02404123dd97702ad9cdcdfc1a:0',
           '832535794ac9488c9db1bbc7c3d9859c57feded783bcd675db1e0216047244af:0',
@@ -455,13 +455,13 @@ describe('processConvertTransactions', () => {
         selectedUtxos: [
           {
             address:
-              'ltcmweb1qqw55czgfd60mgq9063l3mep5wsmmcvdtrfw53k2e0th7f38a6hlzqqnjwkqgrnmsdj4nu72daqdzfp9euhs6v8c3547hzseqa0adnqfnluxjy2mh',
+              'dsvmweb1qqw55czgfd60mgq9063l3mep5wsmmcvdtrfw53k2e0th7f38a6hlzqqnjwkqgrnmsdj4nu72daqdzfp9euhs6v8c3547hzseqa0adnqfnluxjy2mh',
             amountSat: 410150,
             addressType: 6,
           },
           {
             address:
-              'ltcmweb1qq0l2z6ka7nk8yv2wflmvf62jpg2ud9mywcmhr0vvkanwhg9pptes7qmxm0ujztp4sm4zw99x2e7c0ga3l3496qhejj9e7djlj9ymedc00yjlvhrh',
+              'dsvmweb1qq0l2z6ka7nk8yv2wflmvf62jpg2ud9mywcmhr0vvkanwhg9pptes7qmxm0ujztp4sm4zw99x2e7c0ga3l3496qhejj9e7djlj9ymedc00yjlvhrh',
             amountSat: 356900,
             addressType: 6,
           },
@@ -484,7 +484,7 @@ describe('processConvertTransactions', () => {
           outputDetails: [
             {
               address:
-                'ltc1g2zcd2rt0plqfmfzq50p9cjsjwtdmeq4xedlrc7uwmxjupwxtd6sqkljls9',
+                'dsv1g2zcd2rt0plqfmfzq50p9cjsjwtdmeq4xedlrc7uwmxjupwxtd6sqkljls9',
               amount: BigInt(17329660131505),
               isOurAddress: false,
               outputIndex: BigInt(0),
@@ -493,7 +493,7 @@ describe('processConvertTransactions', () => {
                 '582050b0d50d6f0fc09da440a3c25c4a1272dbbc82a6cb7e3c7b8ed9a5c0b8cb6ea0',
             },
             {
-              address: 'ltc1qgc8kd8f8cd4ghznw92fhc72ycrlzp93ugsm99h', // DESTINATION
+              address: 'dsv1qgc8kd8f8cd4ghznw92fhc72ycrlzp93ugsm99h', // DESTINATION
               amount: BigInt(100000000),
               isOurAddress: true,
               outputIndex: BigInt(1),
@@ -524,7 +524,7 @@ describe('processConvertTransactions', () => {
           outputDetails: [
             {
               address:
-                'ltcmweb1qq22pdzz8vc6h06hawcmutm3hgu4x35anjwhygz3fuzfr46070794kqjf5mzr40ddxt5rrr7a0qprtcdgs0wzdxl72fevyzr5dm97t3smactj2muf',
+                'dsvmweb1qq22pdzz8vc6h06hawcmutm3hgu4x35anjwhygz3fuzfr46070794kqjf5mzr40ddxt5rrr7a0qprtcdgs0wzdxl72fevyzr5dm97t3smactj2muf',
               amount: BigInt(4430250),
               isOurAddress: true,
               outputIndex: BigInt(0),
@@ -581,7 +581,7 @@ describe('processConvertTransactions', () => {
           outputDetails: [
             {
               address:
-                'ltc1gyyxmeyttwncav9lzxr8auuyrk8s0aatzzv89uv6xdpv85jcjn9pqgl88au',
+                'dsv1gyyxmeyttwncav9lzxr8auuyrk8s0aatzzv89uv6xdpv85jcjn9pqgl88au',
               amount: BigInt(17325052314067),
               isOurAddress: false,
               outputIndex: BigInt(0),
@@ -590,7 +590,7 @@ describe('processConvertTransactions', () => {
                 '5820210dbc916b74f1d617e230cfde7083b1e0fef562130e5e334668587a4b129942',
             },
             {
-              address: 'ltc1qdze7y7chruzccmegt6tu0ewrltjm7k7xtux6us', // DESTINATION
+              address: 'dsv1qdze7y7chruzccmegt6tu0ewrltjm7k7xtux6us', // DESTINATION
               amount: BigInt(4000000),
               isOurAddress: true,
               outputIndex: BigInt(1),
@@ -621,7 +621,7 @@ describe('processConvertTransactions', () => {
           outputDetails: [
             {
               address:
-                'ltcmweb1qqw55czgfd60mgq9063l3mep5wsmmcvdtrfw53k2e0th7f38a6hlzqqnjwkqgrnmsdj4nu72daqdzfp9euhs6v8c3547hzseqa0adnqfnluxjy2mh',
+                'dsvmweb1qqw55czgfd60mgq9063l3mep5wsmmcvdtrfw53k2e0th7f38a6hlzqqnjwkqgrnmsdj4nu72daqdzfp9euhs6v8c3547hzseqa0adnqfnluxjy2mh',
               amount: BigInt(410150),
               isOurAddress: true,
               outputIndex: BigInt(0),
@@ -647,7 +647,7 @@ describe('processConvertTransactions', () => {
           outputDetails: [
             {
               address:
-                'ltc1gve9q830gjgfwasdsy890l75l4467grx4hxke399ryzulzqyagpcs6vlsgz',
+                'dsv1gve9q830gjgfwasdsy890l75l4467grx4hxke399ryzulzqyagpcs6vlsgz',
               amount: BigInt(17325051790067),
               isOurAddress: false,
               outputIndex: BigInt(0),
@@ -656,7 +656,7 @@ describe('processConvertTransactions', () => {
                 '5820664a03c5e89212eec1b021cafffa9fad75e40cd5b9ad9894a320b9f1009d4071',
             },
             {
-              address: 'ltc1qgdytp7lyhfl7tpg6cpm67zmgh6k28gv0a29t8e', // DESTINATION
+              address: 'dsv1qgdytp7lyhfl7tpg6cpm67zmgh6k28gv0a29t8e', // DESTINATION
               amount: BigInt(500000),
               isOurAddress: true,
               outputIndex: BigInt(1),
@@ -687,7 +687,7 @@ describe('processConvertTransactions', () => {
           outputDetails: [
             {
               address:
-                'ltcmweb1qqtprteuazdnw7g5ymta03jqcuygag5p8plj3lhld5gpy2jwvfanyjqmfuc28cmjpmprrfglkdzm5hucpa796gxhmm88xdpd94de0w3wd5gahswlr',
+                'dsvmweb1qqtprteuazdnw7g5ymta03jqcuygag5p8plj3lhld5gpy2jwvfanyjqmfuc28cmjpmprrfglkdzm5hucpa796gxhmm88xdpd94de0w3wd5gahswlr',
               amount: BigInt(246950),
               isOurAddress: true,
               outputIndex: BigInt(0),
@@ -722,17 +722,17 @@ describe('processConvertTransactions', () => {
       const convertTx1 = result.processedTransactions.find(
         tx =>
           tx.tradeTx.destinationAddress ===
-          'ltc1qgc8kd8f8cd4ghznw92fhc72ycrlzp93ugsm99h',
+          'dsv1qgc8kd8f8cd4ghznw92fhc72ycrlzp93ugsm99h',
       );
       const convertTx2 = result.processedTransactions.find(
         tx =>
           tx.tradeTx.destinationAddress ===
-          'ltc1qdze7y7chruzccmegt6tu0ewrltjm7k7xtux6us',
+          'dsv1qdze7y7chruzccmegt6tu0ewrltjm7k7xtux6us',
       );
       const convertTx3 = result.processedTransactions.find(
         tx =>
           tx.tradeTx.destinationAddress ===
-          'ltc1qgdytp7lyhfl7tpg6cpm67zmgh6k28gv0a29t8e',
+          'dsv1qgdytp7lyhfl7tpg6cpm67zmgh6k28gv0a29t8e',
       );
 
       expect(convertTx1).toBeDefined();
@@ -758,13 +758,13 @@ describe('processConvertTransactions', () => {
 
       const addresses = processedTx.outputDetails.map(output => output.address);
       expect(addresses).toContain(
-        'ltc1g2zcd2rt0plqfmfzq50p9cjsjwtdmeq4xedlrc7uwmxjupwxtd6sqkljls9',
+        'dsv1g2zcd2rt0plqfmfzq50p9cjsjwtdmeq4xedlrc7uwmxjupwxtd6sqkljls9',
       ); // External
       expect(addresses).toContain(
-        'ltc1qgc8kd8f8cd4ghznw92fhc72ycrlzp93ugsm99h',
+        'dsv1qgc8kd8f8cd4ghznw92fhc72ycrlzp93ugsm99h',
       ); // Destination
       expect(addresses).toContain(
-        'ltcmweb1qq22pdzz8vc6h06hawcmutm3hgu4x35anjwhygz3fuzfr46070794kqjf5mzr40ddxt5rrr7a0qprtcdgs0wzdxl72fevyzr5dm97t3smactj2muf',
+        'dsvmweb1qq22pdzz8vc6h06hawcmutm3hgu4x35anjwhygz3fuzfr46070794kqjf5mzr40ddxt5rrr7a0qprtcdgs0wzdxl72fevyzr5dm97t3smactj2muf',
       ); // MWEB change
     });
 
@@ -834,7 +834,7 @@ describe('processConvertTransactions', () => {
 
       expect(processedTx.tradeTx.targetAmount).toBe(500000);
       expect(processedTx.tradeTx.destinationAddress).toBe(
-        'ltc1qgdytp7lyhfl7tpg6cpm67zmgh6k28gv0a29t8e',
+        'dsv1qgdytp7lyhfl7tpg6cpm67zmgh6k28gv0a29t8e',
       );
 
       // Should find both the main transaction and MWEB change
@@ -924,14 +924,14 @@ describe('invalid processConvertTransactions', () => {
 
   const convertTx: IConvertedTx[] = [
     {
-      destinationAddress: 'ltc1q737ettl0szl4gzzd0g3apzscr4ft6ctgdn37t2',
+      destinationAddress: 'dsv1q737ettl0szl4gzzd0g3apzscr4ft6ctgdn37t2',
       targetAmount: 14000000,
       timestamp: 1757075968,
       conversionType: 'regular',
       selectedUtxos: [
         {
           address:
-            'ltcmweb1qq0l2z6ka7nk8yv2wflmvf62jpg2ud9mywcmhr0vvkanwhg9pptes7qmxm0ujztp4sm4zw99x2e7c0ga3l3496qhejj9e7djlj9ymedc00yjlvhrh',
+            'dsvmweb1qq0l2z6ka7nk8yv2wflmvf62jpg2ud9mywcmhr0vvkanwhg9pptes7qmxm0ujztp4sm4zw99x2e7c0ga3l3496qhejj9e7djlj9ymedc00yjlvhrh',
           amountSat: 649991210,
           addressType: 6,
         },
@@ -942,18 +942,18 @@ describe('invalid processConvertTransactions', () => {
     },
     {
       destinationAddress:
-        'ltcmweb1qqfe6trjhtk4ty2uj6wln96tas70t5a80h2cd9slw9gey9x6getfsjq635ry3jy7ty44hpmexcgaunahr4gxmwt38krpmv0jdqh7ugqqd8q9grqm8',
+        'dsvmweb1qqfe6trjhtk4ty2uj6wln96tas70t5a80h2cd9slw9gey9x6getfsjq635ry3jy7ty44hpmexcgaunahr4gxmwt38krpmv0jdqh7ugqqd8q9grqm8',
       targetAmount: 163995500,
       timestamp: 1757089389,
       conversionType: 'private',
       selectedUtxos: [
         {
-          address: 'ltc1q4axlz8tct3uwpvhx0fmgyt79yhlkvqfwvkkusq',
+          address: 'dsv1q4axlz8tct3uwpvhx0fmgyt79yhlkvqfwvkkusq',
           amountSat: 150000000,
           addressType: 0,
         },
         {
-          address: 'ltc1q737ettl0szl4gzzd0g3apzscr4ft6ctgdn37t2',
+          address: 'dsv1q737ettl0szl4gzzd0g3apzscr4ft6ctgdn37t2',
           amountSat: 14000000,
           addressType: 0,
         },
@@ -979,14 +979,14 @@ describe('invalid processConvertTransactions', () => {
         timeStamp: {},
         totalFees: {},
         destAddresses: [
-          'ltc1qal9el8nfmds5xp7uyt2hqvwpzmjlgrsp560sj6',
-          'ltc1q737ettl0szl4gzzd0g3apzscr4ft6ctgdn37t2',
+          'dsv1qal9el8nfmds5xp7uyt2hqvwpzmjlgrsp560sj6',
+          'dsv1q737ettl0szl4gzzd0g3apzscr4ft6ctgdn37t2',
         ],
         outputDetails: [
           {
             $typeName: 'lnrpc.OutputDetail',
             outputType: 2,
-            address: 'ltc1qal9el8nfmds5xp7uyt2hqvwpzmjlgrsp560sj6',
+            address: 'dsv1qal9el8nfmds5xp7uyt2hqvwpzmjlgrsp560sj6',
             pkScript: '0014efcb9f9e69db614307dc22d57031c116e5f40e01',
             outputIndex: {},
             amount: {},
@@ -995,7 +995,7 @@ describe('invalid processConvertTransactions', () => {
           {
             $typeName: 'lnrpc.OutputDetail',
             outputType: 2,
-            address: 'ltc1q737ettl0szl4gzzd0g3apzscr4ft6ctgdn37t2',
+            address: 'dsv1q737ettl0szl4gzzd0g3apzscr4ft6ctgdn37t2',
             pkScript: '0014f47d95afef80bf54084d7a23d08a181d52bd6168',
             outputIndex: {},
             amount: {},

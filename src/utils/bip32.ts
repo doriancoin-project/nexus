@@ -18,7 +18,7 @@ export const bip32RootToBip84Account = (
   account = 0,
 ): Bip84AccountKeys => {
   // Build BIP84 derivation path: m/84'/coin'/account'/
-  const derivationPath = `m/84'/2'/${account}'`;
+  const derivationPath = `m/84'/1948'/${account}'`;
 
   // Derive the account extended key
   const accountExtendedKey = deriveKeyFromPath(bip32RootKey, derivationPath);

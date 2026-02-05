@@ -1,4 +1,4 @@
-package com.litecoin.nexus
+package com.doriancoin.nexus
 
 import com.facebook.react.common.assets.ReactFontManager
 import android.content.res.Configuration

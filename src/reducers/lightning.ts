@@ -6,9 +6,9 @@ import {
   unlockWallet as unlockLndWallet,
   subscribeState,
   stopDaemon,
-} from 'react-native-turbo-lndltc';
+} from 'react-native-turbo-lnddsv';
 import * as RNFS from '@dr.pogodin/react-native-fs';
-import {WalletState} from 'react-native-turbo-lndltc/protos/lightning_pb';
+import {WalletState} from 'react-native-turbo-lnddsv/protos/lightning_pb';
 
 import {AppThunk} from './types';
 import {v4 as uuidv4} from 'uuid';
@@ -59,13 +59,13 @@ export const startLnd = (): AppThunk => async (dispatch, getState) => {
     await createConfig(torEnabled);
 
     // lnd dir path
-    const appFolderPath = `${RNFS.DocumentDirectoryPath}/lndltc/`;
+    const appFolderPath = `${RNFS.DocumentDirectoryPath}/lnddsv/`;
 
     // check if wallet.db is missing - if so, clean up stale macaroons before starting LND
     //
     // when unlockWallet() is called, if wallet.db doesn't exist, initWallet() will be called
     // but lnd connections will fail due to existing macaroon. so we clean up macaroons
-    const dbPath = `${RNFS.DocumentDirectoryPath}/lndltc/data/chain/litecoin/mainnet/wallet.db`;
+    const dbPath = `${RNFS.DocumentDirectoryPath}/lnddsv/data/chain/doriancoin/mainnet/wallet.db`;
     const walletExists = await fileExists(dbPath);
 
     if (!walletExists) {
@@ -224,7 +224,7 @@ export const unlockWallet = (): AppThunk => async (dispatch, getState) => {
   return new Promise(async resolve => {
     let password = await getItem(PASS);
 
-    const dbPath = `${RNFS.DocumentDirectoryPath}/lndltc/data/chain/litecoin/mainnet/wallet.db`;
+    const dbPath = `${RNFS.DocumentDirectoryPath}/lnddsv/data/chain/doriancoin/mainnet/wallet.db`;
 
     // check if wallet exists, otherwise initWallet
     if ((await fileExists(dbPath)) === false) {

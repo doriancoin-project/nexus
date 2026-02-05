@@ -1,9 +1,9 @@
 import {createStorefrontApiClient} from '@shopify/storefront-api-client';
 
-const SHOPIFY_PUBLIC_ACCESS_TOKEN = '476977e6963fcc8cd1d6a38000e10c62';
+const SHOPIFY_PUBLIC_ACCESS_TOKEN = '';
 
 export const shopifyClient = createStorefrontApiClient({
-  storeDomain: 'litecoin-11.myshopify.com',
+  storeDomain: '',
   apiVersion: '2025-10',
   publicAccessToken: SHOPIFY_PUBLIC_ACCESS_TOKEN,
 });
@@ -517,97 +517,23 @@ export interface CartQueryResponse {
 }
 
 export async function fetchProducts(first: number = 20): Promise<Product[]> {
-  try {
-    const {data, errors} = await shopifyClient.request<ProductsResponse>(
-      PRODUCTS_QUERY,
-      {
-        variables: {
-          first,
-        },
-      },
-    );
-
-    if (errors) {
-      console.error('Shopify API errors:', errors);
-      throw new Error('Failed to fetch products');
-    }
-
-    return data?.products?.edges?.map(edge => edge.node) || [];
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    throw error;
-  }
+  // Shopify integration disabled
+  return [];
 }
 
 export async function fetchCollectionsWithProducts(
   first: number = 10,
 ): Promise<CategoryWithProducts[]> {
-  try {
-    const {data, errors} = await shopifyClient.request<CollectionsResponse>(
-      COLLECTIONS_QUERY,
-      {
-        variables: {
-          first,
-        },
-      },
-    );
-
-    if (errors) {
-      console.error('Shopify API errors:', errors);
-      throw new Error('Failed to fetch collections');
-    }
-
-    const collections = data?.collections?.edges?.map(edge => edge.node) || [];
-
-    return collections
-      .map(collection => ({
-        collection,
-        products: collection.products.edges.map(edge => edge.node),
-      }))
-      .filter(category => category.products.length > 0);
-  } catch (error) {
-    console.error('Error fetching collections:', error);
-    throw error;
-  }
+  // Shopify integration disabled
+  return [];
 }
 
 export async function createCart(
   merchandiseId: string,
   quantity: number = 1,
 ): Promise<Cart> {
-  try {
-    const {data, errors} = await shopifyClient.request<CartCreateResponse>(
-      CART_CREATE_MUTATION,
-      {
-        variables: {
-          input: {
-            lines: [
-              {
-                quantity,
-                merchandiseId,
-              },
-            ],
-          },
-        },
-      },
-    );
-
-    if (errors) {
-      console.error('Shopify API errors:', errors);
-      throw new Error('Failed to create cart');
-    }
-
-    if (data?.cartCreate?.userErrors?.length > 0) {
-      throw new Error(
-        data.cartCreate.userErrors.map(error => error.message).join(', '),
-      );
-    }
-
-    return data.cartCreate.cart;
-  } catch (error) {
-    console.error('Error creating cart:', error);
-    throw error;
-  }
+  // Shopify integration disabled
+  return {} as Cart;
 }
 
 export async function addToCart(
@@ -615,38 +541,8 @@ export async function addToCart(
   merchandiseId: string,
   quantity: number = 1,
 ): Promise<Cart> {
-  try {
-    const {data, errors} = await shopifyClient.request<CartLinesAddResponse>(
-      CART_LINES_ADD_MUTATION,
-      {
-        variables: {
-          cartId,
-          lines: [
-            {
-              quantity,
-              merchandiseId,
-            },
-          ],
-        },
-      },
-    );
-
-    if (errors) {
-      console.error('Shopify API errors:', errors);
-      throw new Error('Failed to add items to cart');
-    }
-
-    if (data?.cartLinesAdd?.userErrors?.length > 0) {
-      throw new Error(
-        data.cartLinesAdd.userErrors.map(error => error.message).join(', '),
-      );
-    }
-
-    return data.cartLinesAdd.cart;
-  } catch (error) {
-    console.error('Error adding to cart:', error);
-    throw error;
-  }
+  // Shopify integration disabled
+  return {} as Cart;
 }
 
 export async function updateCartLine(
@@ -654,69 +550,16 @@ export async function updateCartLine(
   lineId: string,
   quantity: number,
 ): Promise<Cart> {
-  try {
-    const {data, errors} = await shopifyClient.request<CartLinesUpdateResponse>(
-      CART_LINES_UPDATE_MUTATION,
-      {
-        variables: {
-          cartId,
-          lines: [
-            {
-              id: lineId,
-              quantity,
-            },
-          ],
-        },
-      },
-    );
-
-    if (errors) {
-      console.error('Shopify API errors:', errors);
-      throw new Error('Failed to update cart');
-    }
-
-    if (data?.cartLinesUpdate?.userErrors?.length > 0) {
-      throw new Error(
-        data.cartLinesUpdate.userErrors.map(error => error.message).join(', '),
-      );
-    }
-
-    return data.cartLinesUpdate.cart;
-  } catch (error) {
-    console.error('Error updating cart:', error);
-    throw error;
-  }
+  // Shopify integration disabled
+  return {} as Cart;
 }
 
 export async function getCart(cartId: string): Promise<Cart> {
-  try {
-    const {data, errors} = await shopifyClient.request<CartQueryResponse>(
-      CART_QUERY,
-      {
-        variables: {
-          cartId,
-        },
-      },
-    );
-
-    if (errors) {
-      console.error('Shopify API errors:', errors);
-      throw new Error('Failed to fetch cart');
-    }
-
-    return data.cart;
-  } catch (error) {
-    console.error('Error fetching cart:', error);
-    throw error;
-  }
+  // Shopify integration disabled
+  return {} as Cart;
 }
 
 export async function getCheckoutUrl(cartId: string): Promise<string> {
-  try {
-    const cart = await getCart(cartId);
-    return cart.checkoutUrl;
-  } catch (error) {
-    console.error('Error getting checkout URL:', error);
-    throw error;
-  }
+  // Shopify integration disabled
+  return '';
 }

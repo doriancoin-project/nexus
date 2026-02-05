@@ -40,7 +40,7 @@ const LogViewer: React.FC<LogViewerProps> = ({
   const styles = getStyles(SCREEN_WIDTH, SCREEN_HEIGHT);
 
   const logFilePath = RNFS?.DocumentDirectoryPath
-    ? `${RNFS.DocumentDirectoryPath}/lndltc/logs/litecoin/mainnet/lnd.log`
+    ? `${RNFS.DocumentDirectoryPath}/lnddsv/logs/doriancoin/mainnet/lnd.log`
     : '';
 
   const readLogFile = async () => {

@@ -8,7 +8,7 @@ import {AppThunk, AppThunkBoolean} from './types';
 import fiat from '../assets/fiat';
 import explorers from '../assets/explorers';
 import {
-  litecoinToSubunit,
+  doriancoinToSubunit,
   satsToSubunit,
   subunitToSats,
 } from '../utils/satoshis';
@@ -66,8 +66,8 @@ const initialState = {
   subunit: 0,
   currencyCode: 'USD',
   currencySymbol: '$',
-  defaultExplorer: 'Litecoin Space',
-  mwebDefaultExplorer: 'MWEB Explorer',
+  defaultExplorer: 'DSV Blocks',
+  mwebDefaultExplorer: 'DSV Blocks',
   languageCode: 'en',
   languageTag: 'en-US',
   deviceNotificationToken: '',
@@ -151,7 +151,7 @@ export const setExplorer =
   (explorer: string): AppThunk =>
   dispatch => {
     dispatch(setExplorerAction(explorer));
-    dispatch(setMWEBExplorerAction('MWEB Explorer'));
+    dispatch(setMWEBExplorerAction('DSV Blocks'));
   };
 
 export const setLanguage =
@@ -305,11 +305,11 @@ export const settingsSlice = createSlice({
 });
 
 // selectors
-export const litecoinToSubunitSelector = createSelector(
+export const doriancoinToSubunitSelector = createSelector(
   state => state.settings.subunit,
   subunit =>
     memoize((amount: number) => {
-      return litecoinToSubunit(amount, subunit);
+      return doriancoinToSubunit(amount, subunit);
     }),
 );
 
@@ -333,15 +333,15 @@ export const subunitSymbolSelector = createSelector(
   state => state.settings.subunit,
   subunit => {
     switch (subunit) {
-      case 0: // litecoin
-        return 'Ł';
+      case 0: // doriancoin
+        return 'D';
       case 1: // lites
-        return 'ł';
+        return 'd';
       case 2: // photons
-        return 'mł';
+        return 'md';
       default:
-        // always default litecoin
-        return 'Ł';
+        // always default doriancoin
+        return 'D';
     }
   },
 );
@@ -350,15 +350,15 @@ export const subunitCodeSelector = createSelector(
   state => state.settings.subunit,
   subunit => {
     switch (subunit) {
-      case 0: // litecoin
-        return 'LTC';
+      case 0: // doriancoin
+        return 'DSV';
       case 1: // lites
         return 'lites';
       case 2: // photons
         return 'photons';
       default:
-        // always default litecoin
-        return 'LTC';
+        // always default doriancoin
+        return 'DSV';
     }
   },
 );
@@ -375,12 +375,9 @@ export const defaultExplorerSelector = createSelector(
   (defaultExplorer, txHash) => {
     const explorerObject = explorers.find(e => e.key === defaultExplorer);
     switch (defaultExplorer) {
-      case 'Litecoin Space':
-      case 'Blockchair':
-      case 'Bitinfocharts':
-      case 'Blockcypher':
-      case 'Litecoinblockexplorer':
-      case 'MWEB Explorer':
+      case 'Doriancoin Explorer':
+      case 'DSV Blocks':
+      case 'Iquidus Explorer':
         return explorerObject!.tx + txHash;
       default:
         return explorers[0].tx + txHash;
@@ -397,7 +394,7 @@ export const mwebDefaultExplorerSelector = createSelector(
     const explorerObject = explorers.find(e => e.key === mwebDefaultExplorer);
 
     switch (mwebDefaultExplorer) {
-      case 'MWEB Explorer':
+      case 'DSV Blocks':
         return explorerObject!.block + blockHeight;
       default:
         return explorerObject!.block + blockHeight;

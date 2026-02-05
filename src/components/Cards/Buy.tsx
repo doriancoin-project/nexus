@@ -233,7 +233,7 @@ const Buy: React.FC<Props> = () => {
                 numberOfLines={1}
               />
               <TranslateText
-                textKey={'n_ltc'}
+                textKey={'n_dsv'}
                 domain={'buyTab'}
                 textStyle={{...styles.buyText, color: '#2C72FF'}}
                 animatedFontSizeValue={ltcFontSize}
@@ -249,7 +249,7 @@ const Buy: React.FC<Props> = () => {
                 }}
               />
               <TranslateText
-                textValue=" LTC"
+                textValue=" DSV"
                 textStyle={styles.buyText}
                 animatedFontSizeValue={ltcFontSize}
                 numberOfLines={1}

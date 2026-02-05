@@ -1,7 +1,7 @@
 import React, {useState, useContext, useLayoutEffect, useCallback} from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 
-import LitecoinIcon from '../LitecoinIcon';
+import DoriancoinIcon from '../DoriancoinIcon';
 import Switch from '../Buttons/Switch';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {setAlertAvailability, updateLastTimePrice} from '../../reducers/alerts';
@@ -110,11 +110,11 @@ const AlertCell: React.FC<Props> = props => {
     <TouchableOpacity style={styles.container} onPress={handlePress}>
       <View style={styles.topContainer}>
         <View style={styles.subContainer}>
-          <LitecoinIcon size={height * 0.046} />
+          <DoriancoinIcon size={height * 0.046} />
           <View>
             <View style={styles.subContainer}>
               <TranslateText
-                textKey="when_ltc"
+                textKey="when_dsv"
                 domain="alertsTab"
                 maxSizeInPixels={height * 0.02}
                 textStyle={styles.text}

@@ -51,7 +51,7 @@ const InitialWithSeed = (props: Props) => {
 
   useEffect(() => {
     dispatch(detectCurrencyCode());
-    dispatch(setExplorer('Litecoin Space'));
+    dispatch(setExplorer('DSV Blocks'));
     dispatch(
       setLanguage(getLocales()[0].languageCode, getLocales()[0].languageTag),
     );
@@ -79,7 +79,7 @@ const InitialWithSeed = (props: Props) => {
                 source={require('../../assets/images/nexus-text-logo.png')}
               />
               <TranslateText
-                textKey="for_litecoin"
+                textKey="for_doriancoin"
                 domain="onboarding"
                 textStyle={styles.logoText}
                 maxSizeInPixels={SCREEN_HEIGHT * 0.02}
