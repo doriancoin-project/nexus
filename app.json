@@ -1,5 +1,5 @@
 {
-  "name": "nexus",
-  "displayName": "Nexus",
+  "name": "doriancoin",
+  "displayName": "Doriancoin",
   "plugins": ["expo-secure-store"]
 }

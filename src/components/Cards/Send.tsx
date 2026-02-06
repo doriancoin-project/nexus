@@ -39,7 +39,7 @@ import {
   updateSendAddress,
   updateSendDomain,
 } from '../../reducers/input';
-import {fetchResolve} from '../../utils/tor';
+// import {fetchResolve} from '../../utils/tor';
 
 import CustomSafeAreaView from '../../components/CustomSafeAreaView';
 import TranslateText from '../../components/TranslateText';
@@ -86,7 +86,7 @@ const Send = forwardRef<URIHandlerRef, Props>((props, ref) => {
   const manualCoinSelectionEnabled = useAppSelector(
     state => state.settings!.manualCoinSelectionEnabled,
   );
-  const torEnabled = useAppSelector(state => state.settings!.torEnabled);
+  // const torEnabled = useAppSelector(state => state.settings!.torEnabled);
   const syncedToChain = useAppSelector(state => state.info!.syncedToChain);
 
   const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} =
@@ -319,62 +319,10 @@ const Send = forwardRef<URIHandlerRef, Props>((props, ref) => {
     const matched = endAddress.match(/^[a-zA-Z0-9-]{1,24}\.ltc$/);
 
     if (matched) {
-      const abortController = new AbortController();
-      const timeoutId = setTimeout(() => abortController.abort(), 10000);
-
-      try {
-        const data = await fetchResolve(
-          'https://api.nexuswallet.com/api/domains/resolve-unstoppable',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-            },
-            body: JSON.stringify({
-              domain: endAddress,
-            }),
-            signal: abortController.signal,
-          },
-          torEnabled,
-        );
-
-        clearTimeout(timeoutId);
-
-        if (data && data.hasOwnProperty('address') && data.address) {
-          addressOnValidation = data.address;
-          // set domain to render in ui
-          setAddressDomain(endAddress);
-          setShowResolvedDomain(true);
-          // update address for another validation function
-          setAddress(addressOnValidation);
-        } else {
-          setAddressValid(null);
-          dispatch(showError('Domain does not resolve to a valid address'));
-          return;
-        }
-      } catch (error) {
-        clearTimeout(timeoutId);
-        setAddressValid(null);
-        if (error instanceof Error) {
-          if (error.name === 'AbortError') {
-            dispatch(showError('Domain resolution timed out'));
-          } else if (error.message.includes('Network request failed')) {
-            dispatch(showError('Network error - check your connection'));
-          } else if (error.message.includes('404')) {
-            dispatch(showError('Domain not found'));
-          } else if (error.message.includes('500')) {
-            dispatch(
-              showError('Domain resolution service temporarily unavailable'),
-            );
-          } else {
-            dispatch(showError('Domain resolution failed'));
-          }
-        } else {
-          dispatch(showError('Domain resolution failed'));
-        }
-        return;
-      }
+      // NOTE: nexuswallet.com domain resolution API is not available for Doriancoin
+      setAddressValid(null);
+      dispatch(showError('Domain resolution is not available'));
+      return;
     }
 
     try {

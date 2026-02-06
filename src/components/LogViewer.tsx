@@ -126,7 +126,7 @@ const LogViewer: React.FC<LogViewerProps> = ({
         return;
       }
 
-      const tempLogPath = `${RNFS.CachesDirectoryPath}/nexus_logs_${Date.now()}.txt`;
+      const tempLogPath = `${RNFS.CachesDirectoryPath}/doriancoin_logs_${Date.now()}.txt`;
       await RNFS.copyFile(logFilePath, tempLogPath);
 
       Share.open({

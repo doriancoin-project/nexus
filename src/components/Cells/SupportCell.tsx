@@ -57,7 +57,7 @@ const getStyles = (screenWidth: number, screenHeight: number) =>
       height: 30,
       width: 30,
       borderRadius: 9,
-      backgroundColor: '#1162E6',
+      backgroundColor: '#1a1a50',
       alignItems: 'center',
       justifyContent: 'center',
     },

@@ -85,7 +85,7 @@ export default function TxDetailModalContent(props: Props) {
           return {
             textKey: 'received',
             txIcon: require('../../assets/icons/receivetx.png'),
-            amountColor: '#1162E6',
+            amountColor: '#1a1a50',
           };
         case 'Buy':
           return {
@@ -97,7 +97,7 @@ export default function TxDetailModalContent(props: Props) {
                   : 'bought'
                 : 'bought',
             txIcon: require('../../assets/icons/buytx.png'),
-            amountColor: '#1162E6',
+            amountColor: '#1a1a50',
           };
         case 'Sell':
           return {
@@ -115,7 +115,7 @@ export default function TxDetailModalContent(props: Props) {
           return {
             textKey: 'Converted',
             txIcon: require('../../assets/icons/converttx.png'),
-            amountColor: '#1162E6',
+            amountColor: '#1a1a50',
           };
         default:
           return {

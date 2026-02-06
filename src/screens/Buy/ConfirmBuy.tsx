@@ -112,8 +112,9 @@ const ConfirmBuy: React.FC<Props> = props => {
       if (typeof url === 'string') {
         navigation.navigate('WebPage', {
           uri: url,
+          // NOTE: nexuswallet.com API is not available for Doriancoin
           observeURL:
-            'https://api.nexuswallet.com/api/buy/moonpay/success_buy/',
+            'https://api.doriancoin.com/api/buy/moonpay/success_buy/',
           returnRoute: 'ConfirmBuy',
         });
       } else {
@@ -273,7 +274,7 @@ const getStyles = (screenWidth: number, screenHeight: number) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#1162E6',
+      backgroundColor: '#1a1a50',
     },
     safeArea: {
       flex: 1,

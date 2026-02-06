@@ -5,7 +5,7 @@ import ReactNativeBlobUtil from 'react-native-blob-util';
 import Crypto from 'react-native-quick-crypto';
 import * as RNFS from '@dr.pogodin/react-native-fs';
 import {Platform} from 'react-native';
-import {getCountry} from 'react-native-localize';
+// import {getCountry} from 'react-native-localize';
 
 import {AppThunk} from './types';
 import {fileExists} from '../utils/file';
@@ -14,7 +14,7 @@ import {setDeviceNotificationToken} from './settings';
 import {generateMnemonic} from '../utils/aezeed';
 import {setItem} from '../utils/keychain';
 import {sleep} from '../utils/poll';
-import {fetchResolve} from '../utils/tor';
+// import {fetchResolve} from '../utils/tor';
 
 // types
 interface IOnboardingState {
@@ -48,7 +48,8 @@ const initialState = {
   lastLoadedCachePart: 0,
 } as IOnboardingState;
 
-const apiAuthUrl = 'https://api.nexuswallet.com/auth';
+// NOTE: nexuswallet.com API is not available for Doriancoin
+// const apiAuthUrl = 'https://api.nexuswallet.com/auth';
 
 // actions
 export const startOnboarding = createAction('onboarding/startOnboarding');
@@ -87,59 +88,16 @@ const setSupportIdAction = createAction<string>(
 );
 
 // functions
-export const loginToNexusApi =
-  (deviceToken: string, isIOS: boolean, osVersion: string): AppThunk =>
+// NOTE: nexuswallet.com API is not available for Doriancoin
+export const loginToDoriancoinApi =
+  (_deviceToken: string, _isIOS: boolean, _osVersion: string): AppThunk =>
   async (dispatch, getState) => {
-    const {uniqueId, isOnboarded} = getState().onboarding!;
-    const {deviceNotificationToken, currencyCode, languageCode, torEnabled} =
-      getState().settings!;
-    if (isOnboarded !== true && !uniqueId && !deviceToken) {
-      return;
+    const {deviceNotificationToken} = getState().settings!;
+    if (!deviceNotificationToken && _deviceToken) {
+      dispatch(setDeviceNotificationToken(_deviceToken));
     }
-    try {
-      if (!deviceNotificationToken) {
-        dispatch(setDeviceNotificationToken(deviceToken));
-      }
-
-      await fetchResolve(
-        `${apiAuthUrl}/login`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            appAuthKey: 'PCUgU3Vcuu4LNRdFPueKLEfsdbcSEgYFUSec4EXx3Ws79f6ckx',
-            userAppUniqueId: uniqueId,
-            deviceToken: deviceToken,
-            isIOS,
-            country: getCountry(),
-            currency: currencyCode,
-            lng: languageCode,
-            osVersion,
-          }),
-        },
-        torEnabled,
-      );
-
-      const response = await fetchResolve(
-        'https://api.nexuswallet.com/api/support/sign',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            identifier: uniqueId,
-          }),
-        },
-        torEnabled,
-      );
-      const {hash} = response;
-      dispatch(setSupportIdAction(hash));
-    } catch (error) {
-      console.error(error);
-    }
+    // API calls to nexuswallet.com are disabled for Doriancoin
+    return;
   };
 
 export const finishOnboarding = (): AppThunk => (dispatch, getState) => {
@@ -199,6 +157,11 @@ const cacheParts = [
 ];
 
 export const getNeutrinoCache = (): AppThunk => async (dispatch, getState) => {
+  // No presync cache server available for Doriancoin - skip presync entirely
+  console.log('presync skipped - no cache server for Doriancoin');
+  dispatch(getNeutrinoCacheFailedAction());
+  return;
+
   const {task, lastLoadedCachePart} = getState().onboarding!;
 
   if (task === 'complete') {
@@ -234,7 +197,9 @@ export const getNeutrinoCache = (): AppThunk => async (dispatch, getState) => {
     })
       .fetch(
         'GET',
-        `https://static.nexuswallet.com/cache/${cacheParts[nextPart - 1]}`,
+        // NOTE: nexuswallet.com cache is not available for Doriancoin
+        // `https://static.nexuswallet.com/cache/${cacheParts[nextPart - 1]}`,
+        `https://static.doriancoin.com/cache/${cacheParts[nextPart - 1]}`,
       )
       .progress((received, total) => {
         dispatch(

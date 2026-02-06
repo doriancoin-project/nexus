@@ -294,7 +294,7 @@ export const ltcRateSelector = createSelector(
   state => state.settings.currencyCode,
   (rates: {[key: string]: any}, currencyCode: string) => {
     if (rates[currencyCode] === undefined) {
-      return rates.USD;
+      return rates.USD || 0;
     } else {
       return rates[currencyCode];
     }
@@ -305,7 +305,7 @@ export const convertLocalFiatToUSD = createSelector(
   state => state.settings.currencyCode,
   state => state.ticker.rates,
   (currencyCode: string, rates: {[key: string]: any}) => {
-    const localToUSD = rates.USD / rates[currencyCode];
+    const localToUSD = (rates.USD || 0) / (rates[currencyCode] || 1);
     return localToUSD;
   },
 );
@@ -319,7 +319,7 @@ export const fiatValueSelector = createSelector(
       satoshi =>
         `${currencySymbol}${(
           (satoshi / 100000000) *
-          rates[currencyCode]
+          (rates[currencyCode] || 0)
         ).toFixed(2)}`,
     ),
 );
@@ -328,7 +328,7 @@ export const confirmSellFiatValueSelector = createSelector(
   state => state.ticker.rates,
   state => state.settings.currencyCode,
   (rates: {[key: string]: any}, currencyCode: string) =>
-    memoize((amount: number) => `${(amount * rates[currencyCode]).toFixed(2)}`),
+    memoize((amount: number) => `${(amount * (rates[currencyCode] || 0)).toFixed(2)}`),
 );
 
 export const monthSelector = createSelector(

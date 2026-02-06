@@ -40,10 +40,12 @@ const Support: React.FC<Props> = props => {
     identifier_hash: supportId,
   };
   const customAttributes = {
-    nexusversion: 3,
+    doriancoinversion: 1,
   };
+  // NOTE: nexuswallet.com support is not available for Doriancoin
+  // TODO: Set up Doriancoin support chat
   const websiteToken = 'SH4YF5fA3sHFqhHvKt23aQzz';
-  const baseUrl = 'https://support.nexuswallet.com';
+  const baseUrl = 'https://support.doriancoin.com';
   const locale = getChatwootLocale(languageCode);
   return (
     <View style={styles.container}>

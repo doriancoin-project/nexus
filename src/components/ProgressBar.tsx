@@ -47,7 +47,7 @@ const ProgressBar = (props: Props) => {
 const styles = StyleSheet.create({
   container: {
     height: 3,
-    backgroundColor: '#1162E6',
+    backgroundColor: '#1a1a50',
     borderTopRightRadius: 1,
     borderBottomRightRadius: 1,
   },

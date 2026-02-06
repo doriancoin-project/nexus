@@ -1,4 +1,4 @@
-package com.doriancoin.nexus
+package com.doriancoin.wallet
 
 import com.facebook.react.common.assets.ReactFontManager
 import android.content.res.Configuration

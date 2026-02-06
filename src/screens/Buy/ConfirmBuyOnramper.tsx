@@ -75,8 +75,9 @@ const ConfirmBuyOnramper: React.FC<Props> = props => {
       if (typeof url === 'string') {
         navigation.navigate('WebPage', {
           uri: url,
+          // NOTE: nexuswallet.com API is not available for Doriancoin
           observeURL:
-            'https://api.nexuswallet.com/api/buy/onramper/success_buy/',
+            'https://api.doriancoin.com/api/buy/onramper/success_buy/',
           returnRoute: 'ConfirmBuyOnramper',
         });
       } else {
@@ -160,7 +161,7 @@ const ConfirmBuyOnramper: React.FC<Props> = props => {
 
   return (
     <View style={styles.container}>
-      <LinearGradient style={styles.container} colors={['#1162E6', '#0F55C7']}>
+      <LinearGradient style={styles.container} colors={['#1a1a50', '#141432']}>
         {buyTxId === '' ? (
           // WebPage is open
           <></>

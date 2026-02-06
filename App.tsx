@@ -31,7 +31,7 @@ import {
 import {PopUpProvider, PopUpContext} from './src/context/popUpContext';
 
 import {useAppDispatch, useAppSelector} from './src/store/hooks';
-import {loginToNexusApi} from './src/reducers/onboarding';
+import {loginToDoriancoinApi} from './src/reducers/onboarding';
 import {
   setDeviceNotificationToken,
   setOpenedNotification,
@@ -109,7 +109,7 @@ function DeviceTokenHandler(props: any) {
     if (props.deviceToken) {
       dispatch(setDeviceNotificationToken(props.deviceToken));
       dispatch(
-        loginToNexusApi(
+        loginToDoriancoinApi(
           props.deviceToken,
           Platform.OS === 'ios',
           String(Platform.Version),

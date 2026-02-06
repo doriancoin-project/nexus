@@ -33,12 +33,12 @@ export function decodeAppDeeplink(deeplink: string): IDeeplinkDecoded {
   let stack = '';
   let screen = '';
   let options = null;
-  if (deeplink.startsWith('nexus://')) {
+  if (deeplink.startsWith('doriancoin://')) {
     const querySplit = deeplink.indexOf('?');
     const query = querySplit === -1 ? '' : deeplink.slice(querySplit + 1);
     options = qs.parse(query);
 
-    const nestedUri = deeplink.slice('nexus://'.length, querySplit);
+    const nestedUri = deeplink.slice('doriancoin://'.length, querySplit);
     if (nestedUri) {
       switch (nestedUri) {
         case 'importprivkey':

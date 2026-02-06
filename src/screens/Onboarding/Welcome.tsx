@@ -163,7 +163,7 @@ const Welcome: React.FC<Props> = props => {
 
   return (
     <>
-      <LinearGradient colors={['#1162E6', '#0F55C7']} style={styles.container}>
+      <LinearGradient colors={['#1a1a50', '#141432']} style={styles.container}>
         <CustomSafeAreaView styles={styles.safeArea} edges={['top', 'bottom']}>
           <View style={styles.contentContainer}>
             {task !== 'complete' ? cacheProgress : null}

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Nexus</string>
+	<string>Doriancoin</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -30,16 +30,6 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>doriancoin</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>nexus</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>nexus</string>
 			</array>
 		</dict>
 	</array>

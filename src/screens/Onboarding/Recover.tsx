@@ -101,7 +101,7 @@ const Recover: React.FC<Props> = props => {
   };
 
   return (
-    <LinearGradient style={styles.gradient} colors={['#1162E6', '#0F55C7']}>
+    <LinearGradient style={styles.gradient} colors={['#1a1a50', '#141432']}>
       <CustomSafeAreaView
         styles={{...styles.safeArea}}
         edges={['top', 'bottom']}>

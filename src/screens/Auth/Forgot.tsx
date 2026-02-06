@@ -59,7 +59,7 @@ const Forgot: React.FC<Props> = ({navigation}) => {
   };
 
   return (
-    <LinearGradient colors={['#1162E6', '#0F55C7']}>
+    <LinearGradient colors={['#1a1a50', '#141432']}>
       <CustomSafeAreaView styles={{...styles.safeArea}} edges={['bottom']}>
         <View style={styles.header} />
         <RecoveryField

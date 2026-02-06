@@ -147,7 +147,7 @@ const ConfirmConvert: React.FC<Props> = props => {
 
   return (
     <>
-      <LinearGradient style={styles.background} colors={['#1162E6', '#0F55C7']}>
+      <LinearGradient style={styles.background} colors={['#1a1a50', '#141432']}>
         <CustomSafeAreaView
           styles={styles.safeArea}
           edges={

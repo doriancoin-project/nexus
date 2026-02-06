@@ -387,7 +387,7 @@ const getStyles = (
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#1162E6',
+      backgroundColor: '#1a1a50',
       flexDirection: 'column',
     },
     headerTitle: {

@@ -331,7 +331,7 @@ const Main: React.FC<Props> = props => {
       if (uri.startsWith('doriancoin:')) {
         setBottomSheetFolded(false);
         setActiveTab(4);
-      } else if (uri.startsWith('nexus://')) {
+      } else if (uri.startsWith('doriancoin://')) {
         const decodedDeeplink = decodeAppDeeplink(uri);
         if (
           decodedDeeplink &&
@@ -500,7 +500,7 @@ const Main: React.FC<Props> = props => {
   );
 
   const plasmaModal_TxDetailModalContent_backSpecifiedStyle = {
-    backgroundColor: 'rgba(17, 74, 175, 0.8)',
+    backgroundColor: 'rgba(26, 26, 80, 0.8)',
   };
   const plasmaModal_TxDetailModalContent_gapSpecifiedStyle = {
     backgroundColor: 'transparent',
@@ -509,7 +509,7 @@ const Main: React.FC<Props> = props => {
     backgroundColor: 'transparent',
   };
   const plasmaModal_PinModalContent_backSpecifiedStyle = {
-    backgroundColor: 'rgba(19,58,138, 0.6)',
+    backgroundColor: 'rgba(26, 26, 80, 0.6)',
   };
 
   return (
@@ -622,10 +622,10 @@ const Main: React.FC<Props> = props => {
 
       <PopUpModal
         isVisible={isPopUpModalOpened}
-        title={openedNotification?.title || 'Nexus Wallet'}
+        title={openedNotification?.title || 'Doriancoin Wallet'}
         text={
           openedNotification?.body ||
-          'Welcome to Nexus - a non-custodial Doriancoin wallet'
+          'Welcome to Doriancoin Mobile Wallet'
         }
         subText={
           openedNotification?.data?.subText ||

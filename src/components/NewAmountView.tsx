@@ -240,7 +240,7 @@ const getStyles = (screenWidth: number, screenHeight: number) =>
     container: {
       top: 0,
       width: '100%',
-      backgroundColor: '#1162E6',
+      backgroundColor: '#1a1a50',
       borderBottomLeftRadius: screenHeight * 0.03,
       borderBottomRightRadius: screenHeight * 0.03,
     },

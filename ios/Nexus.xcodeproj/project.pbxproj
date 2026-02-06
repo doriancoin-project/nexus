@@ -468,9 +468,9 @@
 					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.doriancoin.--PRODUCT-NAME-rfc1034identifier-";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.doriancoin.nexusTests;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.doriancoin.nexusTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.doriancoin.wallet;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.doriancoin.walletTests;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.doriancoin.walletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/plasma.app/plasma";
 			};
@@ -496,9 +496,9 @@
 					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.doriancoin.--PRODUCT-NAME-rfc1034identifier-";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.doriancoin.nexusTests;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.doriancoin.nexusTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.doriancoin.wallet;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.doriancoin.walletTests;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.doriancoin.walletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/plasma.app/plasma";
 			};
@@ -516,7 +516,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = nexus/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Nexus;
+				INFOPLIST_KEY_CFBundleDisplayName = Doriancoin;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -535,8 +535,8 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.doriancoin.--PRODUCT-NAME-rfc1034identifier-";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.doriancoin.nexus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.doriancoin.wallet;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.doriancoin.wallet;
 				PRODUCT_NAME = nexus;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -559,7 +559,7 @@
 				DEVELOPMENT_TEAM = ZV7987N2ZC;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = nexus/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Nexus;
+				INFOPLIST_KEY_CFBundleDisplayName = Doriancoin;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -578,8 +578,8 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.doriancoin.--PRODUCT-NAME-rfc1034identifier-";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.doriancoin.nexus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.doriancoin.wallet;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.doriancoin.wallet;
 				PRODUCT_NAME = nexus;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

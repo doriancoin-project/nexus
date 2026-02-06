@@ -166,21 +166,21 @@ const Chart = ({triggerLester}) => {
         <Line
           p1={vec(0, height * 0.15)}
           p2={vec(width, height * 0.15)}
-          color="#1853B3"
+          color="#252560"
           strokeWidth={1}
           opacity={0.34}
         />
         <Line
           p1={vec(0, height * 0.5)}
           p2={vec(width, height * 0.5)}
-          color="#1853B3"
+          color="#252560"
           strokeWidth={1}
           opacity={0.34}
         />
         <Line
           p1={vec(0, height * 0.85)}
           p2={vec(width, height * 0.85)}
-          color="#1853B3"
+          color="#252560"
           strokeWidth={1}
           opacity={0.34}
         />

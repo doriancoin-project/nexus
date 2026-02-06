@@ -386,18 +386,18 @@ export const subscribeTransactions =
     }
   };
 
-function getUnmatchedNexusApiTxsWithLndTxs(
+function getUnmatchedApiTxsWithLndTxs(
   lndTxs: any[],
-  nexusApiTxs: ITrade[],
+  apiTxs: ITrade[],
 ) {
   const unmatchedTxs: any[] = [];
 
-  nexusApiTxs.forEach(nexusApiTx => {
+  apiTxs.forEach(apiTx => {
     const matchedTx = lndTxs.find(
-      lndTx => lndTx.txHash === nexusApiTx.cryptoTxId,
+      lndTx => lndTx.txHash === apiTx.cryptoTxId,
     );
     if (!matchedTx) {
-      unmatchedTxs.push(nexusApiTx);
+      unmatchedTxs.push(apiTx);
     }
   });
 
@@ -528,12 +528,12 @@ export const getTransactions = (): AppThunk => async (dispatch, getState) => {
       processedConvertTxHashes = processedTxHashes;
     }
 
-    // Compare nexus-api txs with lnd txs to append missing ones in lnd
-    const unmatchedBuyTxs: ITrade[] = getUnmatchedNexusApiTxsWithLndTxs(
+    // Compare API txs with lnd txs to append missing ones in lnd
+    const unmatchedBuyTxs: ITrade[] = getUnmatchedApiTxsWithLndTxs(
       lndTransactions.transactions,
       buyHistory,
     );
-    const unmatchedSellTxs: ITrade[] = getUnmatchedNexusApiTxsWithLndTxs(
+    const unmatchedSellTxs: ITrade[] = getUnmatchedApiTxsWithLndTxs(
       lndTransactions.transactions,
       sellHistory,
     );
@@ -692,7 +692,7 @@ export const getTransactions = (): AppThunk => async (dispatch, getState) => {
 
       const buyTx = buyHistoryMap.get(unmatchedBuyTx.providerTxId);
       // Instead of buyTx.createdAt we extract metadata time since
-      // it is a transaction of nexus-api trade type
+      // it is a transaction of API trade type
       const txTimeStamp = getUTCTimeStampFromMetadata(buyTx.metadata);
       const priceOnDate =
         (await getPriceOnDate(Number(txTimeStamp), torEnabled)) || 0;
@@ -715,7 +715,7 @@ export const getTransactions = (): AppThunk => async (dispatch, getState) => {
 
       const sellTx = sellHistoryMap.get(unmatchedSellTx.providerTxId);
       // Instead of sellTx.createdAt we extract metadata time since
-      // it is a transaction of nexus-api trade type
+      // it is a transaction of API trade type
       const txTimeStamp = getUTCTimeStampFromMetadata(sellTx.metadata);
       const priceOnDate =
         (await getPriceOnDate(Number(txTimeStamp), torEnabled)) || 0;

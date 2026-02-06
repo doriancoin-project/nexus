@@ -8,7 +8,7 @@
 
 import {showError} from './errors';
 import {AppThunk} from './types';
-import {fetchResolve} from '../utils/tor';
+// import {fetchResolve} from '../utils/tor';
 
 // types
 type IAlert = {
@@ -46,106 +46,21 @@ const REMOVE_ALERT = 'REMOVE_ALERT';
 const SET_ALERT_AVAILABILITY = 'SET_ALERT_AVAILABILITY';
 const UPDATE_LAST_TIME_PRICE = 'UPDATE_LAST_TIME_PRICE';
 
-const alertProviderUrl = 'https://api.nexuswallet.com/alert';
+// NOTE: nexuswallet.com API is not available for Doriancoin
+// const alertProviderUrl = 'https://api.nexuswallet.com/alert';
 
 const MAX_ALERTS = 5;
 
 export const resyncAlertsOnApiServer =
-  (): AppThunk => async (dispatch, getState) => {
-    const deviceToken = getState().settings.deviceNotificationToken;
-    const torEnabled = getState().settings.torEnabled;
-    const alerts = getState().alerts.alerts;
-
-    if (!deviceToken) {
-      return;
-    }
-
-    const alertsWithoutId = alerts
-      ? alerts.map((alert: IAlert) => {
-          return {
-            deviceToken: alert.deviceToken,
-            value: alert.value,
-            index: alert.index,
-            isPositive: alert.isPositive,
-            isIOS: alert.isIOS,
-            isFired: alert.isFired,
-            createdAt: alert.createdAt,
-          };
-        })
-      : [];
-
-    try {
-      fetchResolve(
-        `${alertProviderUrl}/resync`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            deviceToken: deviceToken,
-            alerts: alertsWithoutId,
-          }),
-        },
-        torEnabled,
-      );
-    } catch (error) {
-      console.error(error);
-    }
+  (): AppThunk => async (_dispatch, _getState) => {
+    // NOTE: nexuswallet.com API is not available for Doriancoin
+    return;
   };
 
 export const updateFiredAlertsFromApiServer =
-  (): AppThunk => async (dispatch, getState) => {
-    const deviceToken = getState().settings.deviceNotificationToken;
-    const torEnabled = getState().settings.torEnabled;
-    const alerts = getState().alerts.alerts;
-
-    if (!deviceToken) {
-      return;
-    }
-
-    const alertsWithoutId = alerts
-      ? alerts.map((alert: IAlert) => {
-          return {
-            deviceToken: alert.deviceToken,
-            value: alert.value,
-            index: alert.index,
-            isPositive: alert.isPositive,
-            isIOS: alert.isIOS,
-            isFired: alert.isFired,
-            createdAt: alert.createdAt,
-          };
-        })
-      : [];
-
-    try {
-      const data = await fetchResolve(
-        `${alertProviderUrl}/get-fired`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            deviceToken: deviceToken,
-            alerts: alertsWithoutId,
-          }),
-        },
-        torEnabled,
-      );
-
-      data.map((serverFiredAlert: any) => {
-        dispatch({
-          type: SET_ALERT_AVAILABILITY,
-          index: serverFiredAlert.index,
-          availability: !serverFiredAlert.isFired,
-        });
-      });
-
-      dispatch(resyncAlertsOnApiServer());
-    } catch (error) {
-      console.error(error);
-    }
+  (): AppThunk => async (_dispatch, _getState) => {
+    // NOTE: nexuswallet.com API is not available for Doriancoin
+    return;
   };
 
 export const addAlert =

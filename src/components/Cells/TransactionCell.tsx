@@ -48,13 +48,13 @@ const TransactionCell: React.FC<Props> = props => {
           return {
             textKey: 'received_ltc',
             txIcon: require('../../assets/icons/receivetx.png'),
-            amountColor: '#1162E6',
+            amountColor: '#1a1a50',
           };
         case 'Convert':
           return {
             textKey: 'converted_ltc',
             txIcon: require('../../assets/icons/converttx.png'),
-            amountColor: '#1162E6',
+            amountColor: '#1a1a50',
           };
         case 'Buy':
           return {
@@ -64,7 +64,7 @@ const TransactionCell: React.FC<Props> = props => {
                 : 'bought_ltc'
               : 'bought_ltc',
             txIcon: require('../../assets/icons/buytx.png'),
-            amountColor: '#1162E6',
+            amountColor: '#1a1a50',
           };
         case 'Sell':
           return {
@@ -110,7 +110,9 @@ const TransactionCell: React.FC<Props> = props => {
   // const fiatAmount = calculateFiatAmount(amount);
 
   const localFiatToUSD = useAppSelector(state => convertLocalFiatToUSD(state));
-  const priceOnDateInLocalFiat = priceOnDate / localFiatToUSD;
+  const safeFiatToUSD = localFiatToUSD || 1;
+  const safePriceOnDate = priceOnDate || 0;
+  const priceOnDateInLocalFiat = safePriceOnDate / safeFiatToUSD;
   const amountInFiatOnDate = parseFloat(
     String(priceOnDateInLocalFiat * (amount / 100000000)),
   ).toFixed(2);
@@ -247,7 +249,7 @@ const getStyles = (
       width: confs > 6 ? '80%' : '67%',
       height: confs > 6 ? '80%' : '67%',
       borderRadius: screenHeight * 0.04 <= 24 ? 12 : (screenHeight * 0.04) / 2,
-      backgroundColor: sent ? '#000' : '#1162E6',
+      backgroundColor: sent ? '#000' : '#1a1a50',
       justifyContent: 'center',
       alignItems: 'center',
       zIndex: 1,

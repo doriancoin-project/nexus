@@ -50,11 +50,11 @@ const Initial = (props: Props) => {
   }, [dispatch]);
 
   return (
-    <LinearGradient colors={['#1162E6', '#0F55C7']} style={styles.container}>
+    <LinearGradient colors={['#1a1a50', '#141432']} style={styles.container}>
       <View style={styles.logoContainer}>
-        <Image source={require('../../assets/images/big-nexus-logo.png')} />
+        <Image source={require('../../assets/images/big-doriancoin-logo.png')} />
         <View style={styles.textContainer}>
-          <Image source={require('../../assets/images/nexus-text-logo.png')} />
+          <Image source={require('../../assets/images/doriancoin-text-logo.png')} />
           <TranslateText
             textKey="for_doriancoin"
             domain="onboarding"

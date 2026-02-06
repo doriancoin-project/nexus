@@ -4,9 +4,9 @@ import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import DoriancoinIcon from '../DoriancoinIcon';
 import Switch from '../Buttons/Switch';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {setAlertAvailability, updateLastTimePrice} from '../../reducers/alerts';
+import {setAlertAvailability} from '../../reducers/alerts';
 import {formatTxDate} from '../../utils/date';
-import {fetchResolve} from '../../utils/tor';
+// import {fetchResolve} from '../../utils/tor';
 
 import TranslateText from '../../components/TranslateText';
 import {ScreenSizeContext} from '../../context/screenSize';
@@ -40,7 +40,7 @@ const AlertCell: React.FC<Props> = props => {
   const currencySymbol = useAppSelector(
     state => state.settings!.currencySymbol,
   );
-  const torEnabled = useAppSelector(state => state.settings!.torEnabled);
+  // const torEnabled = useAppSelector(state => state.settings!.torEnabled);
 
   const handleSwitch = useCallback(
     (value: boolean) => {
@@ -56,55 +56,14 @@ const AlertCell: React.FC<Props> = props => {
   const [lastTimePrice, setLastTimePrice] = useState('');
 
   useLayoutEffect(() => {
-    const abortController = new AbortController();
-
-    const getLastTimePrice = async () => {
-      try {
-        // do not update too often, max every 10 mins
-        if (
-          (data.lastTimePriceCachedAt || 0) <
-          Math.floor(Date.now() / 1000) - 600
-        ) {
-          const price = data.value;
-          const resData: LastPriceResponse = await fetchResolve(
-            'https://api.nexuswallet.com/api/prices/lastprice',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-              },
-              body: JSON.stringify({
-                price,
-              }),
-              signal: abortController.signal,
-            },
-            torEnabled,
-          );
-
-          if (resData.timestamp) {
-            dispatch(updateLastTimePrice(data.index, resData.timestamp));
-            setLastTimePrice(formatTxDate(resData.timestamp));
-          } else {
-            setLastTimePrice('');
-          }
-        } else {
-          setLastTimePrice(formatTxDate(data.lastTimePriceCache));
-        }
-      } catch (error) {
-        if (error instanceof Error && error.name === 'AbortError') {
-          return;
-        }
-        setLastTimePrice('');
-      }
-    };
-
-    getLastTimePrice();
-
-    return () => {
-      abortController.abort();
-    };
-  }, [dispatch, data, torEnabled]);
+    // NOTE: nexuswallet.com API is not available for Doriancoin
+    // Price last-time lookup is disabled
+    if (data.lastTimePriceCache) {
+      setLastTimePrice(formatTxDate(data.lastTimePriceCache));
+    } else {
+      setLastTimePrice('');
+    }
+  }, [data]);
 
   return (
     <TouchableOpacity style={styles.container} onPress={handlePress}>

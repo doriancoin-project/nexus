@@ -3,7 +3,7 @@ import {
   PreviousOutPoint,
 } from 'react-native-turbo-lnddsv/protos/lightning_pb';
 
-// nexus-api compatible interfaces
+// API compatible interfaces
 type ProviderTypes = 'Moonpay' | 'Onramper';
 
 type TxTypeTypes = 'buy' | 'sell';

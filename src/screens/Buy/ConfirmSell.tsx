@@ -94,8 +94,9 @@ const ConfirmSell: React.FC<Props> = props => {
       if (typeof url === 'string') {
         navigation.navigate('WebPage', {
           uri: url,
+          // NOTE: nexuswallet.com API is not available for Doriancoin
           observeURL:
-            'https://api.nexuswallet.com/api/sell/moonpay/success_sell/',
+            'https://api.doriancoin.com/api/sell/moonpay/success_sell/',
           returnRoute: 'ConfirmSell',
         });
       } else {
@@ -162,7 +163,7 @@ const ConfirmSell: React.FC<Props> = props => {
 
   return (
     <View style={styles.container}>
-      <LinearGradient style={styles.container} colors={['#1162E6', '#0F55C7']}>
+      <LinearGradient style={styles.container} colors={['#1a1a50', '#141432']}>
         {saleTxid === '' ? (
           // WebPage is open
           <></>

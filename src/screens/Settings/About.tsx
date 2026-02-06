@@ -56,7 +56,7 @@ const About: React.FC<Props> = () => {
   );
 
   return (
-    <LinearGradient colors={['#1162E6', '#0F55C7']} style={styles.container}>
+    <LinearGradient colors={['#1a1a50', '#141432']} style={styles.container}>
       <SafeAreaView>
         <ScrollView>
           <View style={styles.creditsContainer}>

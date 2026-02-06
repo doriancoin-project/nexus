@@ -32,16 +32,12 @@
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
         <data android:scheme="doriancoin" />
-        <data android:scheme="nexus" />
       </intent-filter>
       <intent-filter>
         <action android:name="android.nfc.action.NDEF_DISCOVERED" />
         <category android:name="android.intent.category.DEFAULT" />
         <data
           android:scheme="doriancoin"
-          android:pathPattern=".*" />
-        <data
-          android:scheme="nexus"
           android:pathPattern=".*" />
       </intent-filter>
       <intent-filter>

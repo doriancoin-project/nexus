@@ -85,7 +85,7 @@ const ResetWallet: React.FC<Props> = () => {
 
   return (
     <>
-      <LinearGradient style={styles.container} colors={['#1162E6', '#0F55C7']}>
+      <LinearGradient style={styles.container} colors={['#1a1a50', '#141432']}>
         <View style={styles.body}>
           <TranslateText
             textKey="resetting_wallet"

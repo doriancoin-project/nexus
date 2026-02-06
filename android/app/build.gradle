@@ -77,9 +77,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.doriancoin.nexus"
+    namespace "com.doriancoin.wallet"
     defaultConfig {
-        applicationId "com.doriancoin.nexus"
+        applicationId "com.doriancoin.wallet"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 17

@@ -60,7 +60,7 @@ export function useMainAnims(props: Props) {
       backgroundColor: interpolateColor(
         mainSheetsTranslationY.value,
         [OPEN_SNAP_POINT, CLOSED_SNAP_POINT],
-        [isInternetReachable ? '#1162E6' : '#F36F56', '#f7f7f7'],
+        [isInternetReachable ? '#1a1a50' : '#F36F56', '#f7f7f7'],
       ),
     };
   });

@@ -25,6 +25,6 @@ export default class Header extends PureComponent<Props> {
 const styles = StyleSheet.create({
   container: {
     height: Dimensions.get('screen').height * 0.13,
-    backgroundColor: '#1162E6',
+    backgroundColor: '#1a1a50',
   },
 });
