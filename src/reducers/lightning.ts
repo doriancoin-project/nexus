@@ -203,6 +203,7 @@ export const initWallet = (): AppThunk => async (dispatch, getState) => {
             dispatch(pollPeers());
             dispatch(pollRates());
             dispatch(pollTransactions());
+            dispatch(pollBalance());
             dispatch(subscribeTransactions());
 
             return;

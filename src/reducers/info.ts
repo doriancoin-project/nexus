@@ -65,7 +65,7 @@ const initialState = {
   numPendingChannels: 0,
   numInactiveChannels: 0,
   isInternetReachable: null,
-  startingSyncTimestamp: '1317969544',
+  startingSyncTimestamp: '1394325760',
   decimalSynced: 0,
   recoveryProgress: 0,
   recoveryMode: false,
@@ -132,7 +132,7 @@ const getInfo = (): AppThunk => async (dispatch, getState) => {
       numActiveChannels: infoRpc.numActiveChannels,
       numPendingChannels: infoRpc.numPendingChannels,
       numInactiveChannels: infoRpc.numInactiveChannels,
-      startingSyncTimestamp: '1317969544',
+      startingSyncTimestamp: '1394325760',
       decimalSynced: 0,
       peers: peers,
     };
@@ -146,7 +146,7 @@ const getInfo = (): AppThunk => async (dispatch, getState) => {
     const syncInDecimal = await calculateSyncProgress(
       info.bestHeaderTimestamp
         ? String(info.bestHeaderTimestamp)
-        : '1317969544',
+        : '1394325760',
       startingSyncTimestamp,
     );
     if (syncInDecimal < 0.9) {
@@ -156,7 +156,7 @@ const getInfo = (): AppThunk => async (dispatch, getState) => {
       info.decimalSynced = await calculateSyncProgress(
         info.bestHeaderTimestamp
           ? String(info.bestHeaderTimestamp)
-          : '1317969544',
+          : '1394325760',
         startingSyncTimestamp,
       );
     }
