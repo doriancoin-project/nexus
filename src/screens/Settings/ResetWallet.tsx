@@ -20,6 +20,7 @@ import HeaderButton from '../../components/Buttons/HeaderButton';
 import PlasmaModal from '../../components/Modals/PlasmaModal';
 import PinModalContent from '../../components/Modals/PinModalContent';
 import {resetPincode} from '../../reducers/authentication';
+import {stopLnd} from '../../reducers/lightning';
 import {useAppDispatch} from '../../store/hooks';
 import {sleep} from '../../utils/poll';
 import {purgeStore} from '../../store';
@@ -77,6 +78,7 @@ const ResetWallet: React.FC<Props> = () => {
 
   const handleReset = async () => {
     dispatch(resetPincode());
+    await dispatch(stopLnd());
     await purgeStore();
     await deleteLNDDir();
     await sleep(4000);
